@@ -1,0 +1,12 @@
+
+> notequest@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.7 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.191.28.220:3000
+✓ Ready in 681ms
+✓ Running next.config.ts took 56ms
+SyntaxError: Invalid regular expression: /^/_next/data/development/resources/category/[slug\.json$/: Unterminated character class
+    at new RegExp (<anonymous>)
+[?25h
