@@ -1,4 +1,6 @@
 
+"use client";
+
 import {
   BookOpen,
   Video,
@@ -6,7 +8,9 @@ import {
   FolderKanban,
   Route,
   Target,
+  Sparkles,
 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const features = [
   {
@@ -73,14 +77,17 @@ const colorStyles = {
 };
 
 export default function WhyLearn() {
+  const sectionRef = useReveal();
+
   return (
-    <section className="bg-slate-50 py-20 lg:py-24">
+    <section ref={sectionRef} className="bg-slate-50 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-bold uppercase tracking-wider text-blue-600">
+        <div className="reveal mx-auto max-w-2xl text-center">
+          <span className="section-badge inline-flex items-center gap-1.5">
+            <Sparkles size={13} className="text-blue-600" />
             Learn With NoteQuest
-          </p>
+          </span>
 
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
             Everything you need to learn IT
@@ -94,14 +101,14 @@ export default function WhyLearn() {
 
         {/* Feature Grid */}
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => {
+          {features.map((feature, idx) => {
             const Icon = feature.icon;
             const styles = colorStyles[feature.color];
 
             return (
               <div
                 key={feature.title}
-                className={`group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${styles.hover}`}
+                className={`reveal reveal-delay-${((idx % 3) + 1) * 100} group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${styles.hover}`}
               >
                 <div
                   className={`flex h-12 w-12 items-center justify-center rounded-2xl ${styles.icon}`}
@@ -109,7 +116,7 @@ export default function WhyLearn() {
                   <Icon size={23} strokeWidth={1.8} />
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-slate-900">
+                <h3 className="mt-6 text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                   {feature.title}
                 </h3>
 

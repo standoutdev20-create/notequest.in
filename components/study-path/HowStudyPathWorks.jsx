@@ -9,6 +9,7 @@ import {
   Compass,
   Sparkles,
 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const steps = [
   {
@@ -50,15 +51,17 @@ const steps = [
 ];
 
 export default function HowStudyPathWorks() {
+  const sectionRef = useReveal();
+
   return (
-    <section className="relative overflow-hidden bg-slate-50/70 py-16 sm:py-20">
+    <section ref={sectionRef} className="relative overflow-hidden bg-slate-50/70 py-16 sm:py-20">
       {/* Background Glows */}
       <div className="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-blue-200/20 blur-[110px]" />
       <div className="pointer-events-none absolute -right-40 bottom-10 h-80 w-80 rounded-full bg-purple-200/20 blur-[110px]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <div className="mx-auto mb-12 max-w-2xl text-center">
+        <div className="reveal mx-auto mb-12 max-w-2xl text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-white px-3 py-1.5 text-xs font-semibold text-indigo-600 shadow-sm">
             <Sparkles className="h-3.5 w-3.5" />
             Simple Learning Process
@@ -86,7 +89,7 @@ export default function HowStudyPathWorks() {
               return (
                 <div
                   key={step.number}
-                  className="group relative rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/30"
+                  className={`reveal reveal-delay-${(index + 1) * 100} group relative rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/30`}
                 >
                   {/* Number + Icon */}
                   <div className="relative flex items-center justify-between">
@@ -96,7 +99,7 @@ export default function HowStudyPathWorks() {
                       <Icon className={`h-6 w-6 ${step.iconColor}`} />
                     </div>
 
-                    <span className="text-3xl font-black tracking-tight text-slate-100 transition-colors duration-300 group-hover:text-blue-100">
+                    <span className="text-3xl font-black tracking-tight text-slate-200 transition-colors duration-300 group-hover:text-blue-100">
                       {step.number}
                     </span>
                   </div>
@@ -124,7 +127,7 @@ export default function HowStudyPathWorks() {
         </div>
 
         {/* Bottom Message */}
-        <div className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-2 text-center text-sm font-medium text-slate-500">
+        <div className="reveal reveal-delay-400 mx-auto mt-10 flex max-w-2xl items-center justify-center gap-2 text-center text-sm font-medium text-slate-500">
           <span>Learn at your own pace.</span>
           <ArrowRight className="h-4 w-4 text-blue-500" />
           <span>Keep moving forward.</span>

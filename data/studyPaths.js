@@ -571,4 +571,164 @@ export const studyPaths = {
       "Cloud Deployment",
     ],
   },
+
+  "javascript": {
+    title: "JavaScript Mastery",
+    category: "Technology Path",
+    level: "Beginner to Advanced",
+    duration: "2–3 Months",
+    projects: "5 Projects",
+    topics: "10+ Topics",
+    description:
+      "Master modern JavaScript (ES6+), async programming, event loop, DOM manipulation, and design patterns.",
+    overview:
+      "JavaScript is the lifeblood of modern web engineering. This path takes you from basic variables and scopes to functional programming, Promises, async/await, and browser engine internals.",
+    skills: [
+      "ES6+ Syntax",
+      "Async/Await & Promises",
+      "Event Loop & Concurrency",
+      "Closures & Prototypes",
+      "DOM & Web APIs",
+      "Modern Tooling & Bundlers",
+      "Unit Testing",
+    ],
+    roadmap: [
+      {
+        step: "01",
+        title: "Language Fundamentals",
+        description: "Variables, primitive types, operators, scope, functions, and control flow.",
+        topics: ["Variables", "Data Types", "Functions", "Scope & Hoisting"],
+      },
+      {
+        step: "02",
+        title: "Objects & Modern ES6+",
+        description: "Destructuring, spread/rest, arrow functions, template literals, and classes.",
+        topics: ["Objects", "Arrays", "ES6 Modules", "Classes"],
+      },
+      {
+        step: "03",
+        title: "Asynchronous JavaScript",
+        description: "Deep dive into callbacks, promises, async/await, and event loops.",
+        topics: ["Callbacks", "Promises", "Async/Await", "Event Loop"],
+      },
+      {
+        step: "04",
+        title: "Browser APIs & DOM",
+        description: "Manipulating elements, event delegation, LocalStorage, and Fetch API.",
+        topics: ["DOM Traversal", "Event Delegation", "Fetch API", "Storage"],
+      },
+    ],
+    projects: [
+      "Interactive Quiz Platform",
+      "Task Kanban Board",
+      "Real-Time Weather Dashboard",
+      "Custom Audio Player",
+    ],
+  },
+
+  "react": {
+    title: "React.js Complete Path",
+    category: "Technology Path",
+    level: "Intermediate",
+    duration: "2–3 Months",
+    projects: "4 Projects",
+    topics: "12+ Topics",
+    description:
+      "Learn React 19 fundamentals, hooks, state management, component architecture, and Next.js integration.",
+    overview:
+      "Build dynamic, high-performance user interfaces with React. This path covers everything from basic JSX components to custom hooks, performance tuning, and full-stack Next.js concepts.",
+    skills: [
+      "React 19 Hooks",
+      "Component Lifecycle",
+      "Context & State Management",
+      "React Router & App Router",
+      "Performance (useMemo/useCallback)",
+      "Tailwind CSS Integration",
+    ],
+    roadmap: [
+      {
+        step: "01",
+        title: "Component Architecture",
+        description: "JSX, props, unidirectional data flow, conditional rendering, and lists.",
+        topics: ["JSX", "Props", "Components", "Lists & Keys"],
+      },
+      {
+        step: "02",
+        title: "State & Lifecycle Hooks",
+        description: "useState, useEffect, useRef, and creating reusable custom hooks.",
+        topics: ["useState", "useEffect", "useRef", "Custom Hooks"],
+      },
+      {
+        step: "03",
+        title: "Global State & Context",
+        description: "Context API, reducer patterns, and lightweight store management.",
+        topics: ["useContext", "useReducer", "Zustand Basics"],
+      },
+      {
+        step: "04",
+        title: "Full-Stack React (Next.js)",
+        description: "Server vs Client Components, SSR, data fetching, and deployment.",
+        topics: ["Next.js App Router", "Server Components", "Streaming SSR"],
+      },
+    ],
+    projects: [
+      "E-Commerce Product Explorer",
+      "Real-time Chat Interface",
+      "Notes & Markdown Editor",
+      "Analytics Dashboard",
+    ],
+  },
+
+  "dsa": {
+    title: "Data Structures & Algorithms",
+    category: "Technology Path",
+    level: "Beginner to Advanced",
+    duration: "3–5 Months",
+    projects: "150+ Problems",
+    topics: "16+ Topics",
+    description:
+      "Build bulletproof algorithmic problem-solving skills for technical interviews and efficient software design.",
+    overview:
+      "Understand Big-O analysis, core data structures from arrays to graphs, and essential algorithmic paradigms including divide-and-conquer, dynamic programming, and greedy algorithms.",
+    skills: [
+      "Time & Space Complexity",
+      "Arrays & Hash Maps",
+      "Linked Lists & Trees",
+      "Graph Traversal (BFS/DFS)",
+      "Dynamic Programming",
+      "Sorting & Binary Search",
+    ],
+    roadmap: [
+      {
+        step: "01",
+        title: "Complexity & Linear Data Structures",
+        description: "Big-O notation, arrays, strings, two-pointer techniques, and sliding windows.",
+        topics: ["Big-O Analysis", "Arrays", "Strings", "Two Pointers"],
+      },
+      {
+        step: "02",
+        title: "Linked Lists, Stacks & Queues",
+        description: "Pointer manipulation, monotonic stacks, queues, and recursion.",
+        topics: ["Singly/Doubly Linked Lists", "Stacks", "Queues", "Recursion"],
+      },
+      {
+        step: "03",
+        title: "Trees & Binary Search Trees",
+        description: "Tree traversals (inorder/preorder/postorder), BFS, DFS, and balance.",
+        topics: ["Binary Trees", "BST", "Tree Traversal", "Heaps"],
+      },
+      {
+        step: "04",
+        title: "Graphs & Dynamic Programming",
+        description: "Adjacency lists, shortest paths, memoization, and tabulation.",
+        topics: ["BFS & DFS", "Dijkstra", "Memoization", "Tabulation"],
+      },
+    ],
+    projects: [
+      "Maze Pathfinding Visualizer",
+      "LRU Cache Engine",
+      "Expression Syntax Evaluator",
+      "Autocomplete Trie System",
+    ],
+  },
 };

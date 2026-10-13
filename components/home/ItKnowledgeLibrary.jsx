@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   ChevronRight,
   Code2,
@@ -13,7 +14,9 @@ import {
   BookOpen,
   Play,
   FileText,
+  Sparkles,
 } from 'lucide-react';
+import { useReveal } from '@/hooks/useReveal';
 
 const categories = [
   {
@@ -59,124 +62,201 @@ const techCards = [
     category: 'Programming Language',
     categoryId: 'programming',
     icon: '🐍',
+    href: '/subjects/programming-languages',
   },
   {
     name: 'Java',
     category: 'Programming Language',
     categoryId: 'programming',
     icon: '☕',
+    href: '/subjects/programming-languages',
   },
   {
     name: 'JavaScript',
     category: 'Web Technology',
     categoryId: 'web',
     icon: 'JS',
+    href: '/study-path/javascript',
   },
   {
     name: 'TypeScript',
     category: 'Web Technology',
     categoryId: 'web',
     icon: 'TS',
+    href: '/resources/react-nextjs-notes',
   },
   {
     name: 'C++',
     category: 'Programming Language',
     categoryId: 'programming',
     icon: 'C++',
+    href: '/subjects/programming-languages',
   },
   {
     name: 'C#',
     category: 'Programming Language',
     categoryId: 'programming',
     icon: 'C#',
+    href: '/subjects/programming-languages',
   },
   {
     name: 'Go',
     category: 'Programming Language',
     categoryId: 'programming',
     icon: 'GO',
+    href: '/subjects/programming-languages',
   },
   {
     name: 'Rust',
     category: 'Programming Language',
     categoryId: 'programming',
     icon: '🦀',
+    href: '/subjects/programming-languages',
   },
   {
     name: 'React',
-    category: 'Frontend Development',
+    category: 'Web Framework',
     categoryId: 'web',
     icon: '⚛️',
+    href: '/study-path/react',
+  },
+  {
+    name: 'Next.js',
+    category: 'Web Framework',
+    categoryId: 'web',
+    icon: '▲',
+    href: '/resources/react-nextjs-notes',
   },
   {
     name: 'Node.js',
-    category: 'Backend Development',
+    category: 'Backend Runtime',
     categoryId: 'web',
-    icon: '⬢',
+    icon: '🟢',
+    href: '/study-path/backend-developer',
+  },
+  {
+    name: 'Tailwind CSS',
+    category: 'CSS Framework',
+    categoryId: 'web',
+    icon: '🌊',
+    href: '/resources/tailwind-ui-guide',
   },
   {
     name: 'SQL',
-    category: 'Database',
+    category: 'Database Querying',
     categoryId: 'data',
-    icon: '🛢️',
+    icon: '🗄️',
+    href: '/resources/sql-interview',
+  },
+  {
+    name: 'PostgreSQL',
+    category: 'Relational Database',
+    categoryId: 'data',
+    icon: '🐘',
+    href: '/study-path/database-sql',
   },
   {
     name: 'MongoDB',
-    category: 'Database',
+    category: 'NoSQL Database',
     categoryId: 'data',
     icon: '🍃',
+    href: '/study-path/database-sql',
+  },
+  {
+    name: 'Redis',
+    category: 'In-Memory Cache',
+    categoryId: 'data',
+    icon: '⚡',
+    href: '/resources/system-design',
+  },
+  {
+    name: 'Operating Systems',
+    category: 'Core Computer Science',
+    categoryId: 'cs',
+    icon: '💻',
+    href: '/resources/operating-systems',
+  },
+  {
+    name: 'Computer Networks',
+    category: 'Core Computer Science',
+    categoryId: 'cs',
+    icon: '🌐',
+    href: '/resources/computer-networks',
+  },
+  {
+    name: 'DBMS',
+    category: 'Database Management',
+    categoryId: 'cs',
+    icon: '📊',
+    href: '/study-path/database-sql',
+  },
+  {
+    name: 'Data Structures',
+    category: 'Algorithms & Structures',
+    categoryId: 'cs',
+    icon: '🌳',
+    href: '/study-path/dsa',
+  },
+  {
+    name: 'Docker',
+    category: 'Containerization',
+    categoryId: 'cloud',
+    icon: '🐳',
+    href: '/study-path/cloud-devops',
+  },
+  {
+    name: 'Kubernetes',
+    category: 'Orchestration',
+    categoryId: 'cloud',
+    icon: '☸️',
+    href: '/study-path/cloud-devops',
+  },
+  {
+    name: 'AWS',
+    category: 'Cloud Infrastructure',
+    categoryId: 'cloud',
+    icon: '☁️',
+    href: '/study-path/cloud-devops',
   },
   {
     name: 'Git & GitHub',
     category: 'Version Control',
     categoryId: 'cloud',
     icon: '🐙',
+    href: '/resources/git-github',
   },
   {
-    name: 'Docker',
-    category: 'DevOps',
-    categoryId: 'cloud',
-    icon: '🐳',
+    name: 'Machine Learning',
+    category: 'AI Fundamentals',
+    categoryId: 'ai',
+    icon: '🤖',
+    href: '/videos',
   },
   {
-    name: 'AWS',
-    category: 'Cloud Platform',
-    categoryId: 'cloud',
-    icon: '☁️',
-  },
-  {
-    name: 'HTML & CSS',
-    category: 'Web Development',
-    categoryId: 'web',
-    icon: '🌐',
-  },
-  {
-    name: 'Next.js',
-    category: 'Frontend Framework',
-    categoryId: 'web',
-    icon: 'N',
-  },
-  {
-    name: 'Express.js',
-    category: 'Backend Framework',
-    categoryId: 'web',
-    icon: 'ex',
-  },
-  {
-    name: 'Linux',
-    category: 'Operating System',
-    categoryId: 'cs',
-    icon: '🐧',
-  },
-  {
-    name: 'AI & ML',
-    category: 'Artificial Intelligence',
+    name: 'Deep Learning',
+    category: 'Neural Networks',
     categoryId: 'ai',
     icon: '🧠',
+    href: '/videos',
+  },
+  {
+    name: 'React Native',
+    category: 'Cross-Platform Mobile',
+    categoryId: 'mobile',
+    icon: '📱',
+    href: '/study-path/frontend-developer',
+  },
+  {
+    name: 'Flutter',
+    category: 'Cross-Platform Mobile',
+    categoryId: 'mobile',
+    icon: '💙',
+    href: '/study-path/frontend-developer',
   },
 ];
 
 export default function ItKnowledgeLibrary() {
+  const sectionRef = useReveal();
   const [activeCategory, setActiveCategory] = useState('programming');
 
   const filteredTechCards = techCards.filter(
@@ -184,11 +264,11 @@ export default function ItKnowledgeLibrary() {
   );
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#EBF3FF] via-[#F4F7FF] to-[#EBF3FF] p-4 sm:p-8 flex items-center justify-center font-sans antialiased text-slate-800">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-br from-[#EBF3FF] via-[#F4F7FF] to-[#EBF3FF] p-4 sm:p-8 flex items-center justify-center font-sans antialiased text-slate-800">
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
         {/* --- LEFT BLUE GRADIENT SIDEBAR --- */}
-        <div className="lg:col-span-4 bg-gradient-to-b from-[#1D63FE] via-[#2A6CFF] to-[#437BFF] rounded-[28px] p-6 text-white shadow-xl flex flex-col justify-between relative overflow-hidden min-h-[620px]">
+        <div className="reveal from-left lg:col-span-4 bg-gradient-to-b from-[#1D63FE] via-[#2A6CFF] to-[#437BFF] rounded-[28px] p-6 text-white shadow-xl flex flex-col justify-between relative overflow-hidden min-h-[580px]">
 
           {/* Subtle Top Glow */}
           <div className="absolute top-0 left-0 right-0 h-32 bg-white/10 blur-2xl pointer-events-none" />
@@ -254,15 +334,15 @@ export default function ItKnowledgeLibrary() {
             <div className="relative flex items-center justify-center">
 
               {/* Floating Media Icons */}
-              <div className="absolute -top-3 -left-8 bg-white/20 backdrop-blur-md p-1.5 rounded-lg border border-white/30 text-white">
+              <div className="absolute -top-3 -left-8 bg-white/20 backdrop-blur-md p-1.5 rounded-lg border border-white/30 text-white animate-float">
                 <Code2 className="w-3.5 h-3.5" />
               </div>
 
-              <div className="absolute -top-4 -right-6 bg-white/20 backdrop-blur-md p-1.5 rounded-lg border border-white/30 text-white">
+              <div className="absolute -top-4 -right-6 bg-white/20 backdrop-blur-md p-1.5 rounded-lg border border-white/30 text-white animate-float-reverse">
                 <Play className="w-3.5 h-3.5" />
               </div>
 
-              <div className="absolute bottom-0 -right-8 bg-white/20 backdrop-blur-md p-1.5 rounded-lg border border-white/30 text-white">
+              <div className="absolute bottom-0 -right-8 bg-white/20 backdrop-blur-md p-1.5 rounded-lg border border-white/30 text-white animate-float">
                 <FileText className="w-3.5 h-3.5" />
               </div>
 
@@ -277,22 +357,23 @@ export default function ItKnowledgeLibrary() {
         </div>
 
         {/* --- RIGHT TECHNOLOGY CARDS GRID --- */}
-        <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div className="reveal from-right lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
 
           {filteredTechCards.length > 0 ? (
             filteredTechCards.map((tech) => (
-              <div
+              <Link
                 key={tech.name}
-                className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-slate-100 hover:border-blue-200 shadow-sm hover:shadow-md transition-all duration-200 group cursor-pointer flex flex-col justify-between min-h-[115px] relative"
+                href={tech.href || '/resources'}
+                className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-slate-100 hover:border-blue-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between min-h-[120px] relative"
               >
 
                 {/* Top Row: Icon Badge + Decorative Dot */}
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-50 group-hover:bg-blue-50/80 flex items-center justify-center text-slate-700 group-hover:text-blue-600 font-bold text-sm transition-colors border border-slate-100/80">
+                  <div className="w-9 h-9 rounded-xl bg-slate-50 group-hover:bg-blue-50/90 flex items-center justify-center text-slate-700 group-hover:text-blue-600 font-bold text-sm transition-colors border border-slate-100/80">
                     {tech.icon}
                   </div>
 
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-200 group-hover:bg-blue-400 transition-colors" />
+                  <span className="w-2 h-2 rounded-full bg-slate-200 group-hover:bg-blue-500 transition-colors" />
                 </div>
 
                 {/* Title & Category Label */}
@@ -306,7 +387,7 @@ export default function ItKnowledgeLibrary() {
                   </p>
                 </div>
 
-              </div>
+              </Link>
             ))
           ) : (
             <div className="col-span-full bg-white/90 rounded-2xl border border-slate-100 p-10 text-center shadow-sm">

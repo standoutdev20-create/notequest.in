@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   ArrowRight,
@@ -8,6 +10,7 @@ import {
   Cloud,
   Globe2,
 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const paths = [
   {
@@ -86,11 +89,13 @@ const colorStyles = {
 };
 
 export default function LearningPaths() {
+  const sectionRef = useReveal();
+
   return (
-    <section className="bg-white py-20 lg:py-24">
+    <section ref={sectionRef} className="bg-white py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+        <div className="reveal flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <p className="text-sm font-bold uppercase tracking-wider text-purple-600">
               Learning Paths
@@ -120,14 +125,14 @@ export default function LearningPaths() {
 
         {/* Path Cards */}
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {paths.map((path) => {
+          {paths.map((path, idx) => {
             const Icon = path.icon;
             const styles = colorStyles[path.color];
 
             return (
               <div
                 key={path.title}
-                className={`group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${styles.border}`}
+                className={`reveal reveal-delay-${((idx % 3) + 1) * 100} group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${styles.border}`}
               >
                 {/* Background Decoration */}
                 <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-slate-50 transition-transform duration-500 group-hover:scale-150" />

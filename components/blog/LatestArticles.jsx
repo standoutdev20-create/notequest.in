@@ -3,11 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-
+import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 import blogPosts from "../../data/blogPosts";
 
 export default function LatestArticles() {
+  const sectionRef = useReveal();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const totalCards = blogPosts.length;
@@ -38,6 +39,7 @@ export default function LatestArticles() {
 
   return (
     <section
+      ref={sectionRef}
       id="latest-articles"
       className="relative overflow-hidden bg-white py-20"
     >
@@ -48,13 +50,14 @@ export default function LatestArticles() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* ================= HEADING ================= */}
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div className="reveal flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm font-semibold text-blue-600">
+            <div className="section-badge mb-3 inline-flex items-center gap-1.5">
+              <Sparkles className="h-3.5 w-3.5 text-blue-600" />
               Fresh from NoteQuest
-            </p>
+            </div>
 
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
               Latest Articles
             </h2>
 

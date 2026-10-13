@@ -13,6 +13,7 @@ import {
   TrendingUp,
   Star,
 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const popularResources = [
   {
@@ -108,8 +109,10 @@ const popularResources = [
 ];
 
 export default function PopularResources() {
+  const sectionRef = useReveal();
+
   return (
-    <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+    <section ref={sectionRef} className="relative overflow-hidden bg-white py-16 sm:py-20">
       {/* Background Glows */}
       <div className="pointer-events-none absolute left-[-160px] top-20 h-80 w-80 rounded-full bg-blue-200/20 blur-[110px]" />
 
@@ -117,7 +120,7 @@ export default function PopularResources() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="reveal mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-purple-100 bg-purple-50 px-3 py-1.5 text-xs font-semibold text-purple-600">
               <TrendingUp className="h-3.5 w-3.5" />

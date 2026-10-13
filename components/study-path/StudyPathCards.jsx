@@ -13,6 +13,7 @@ import {
   Layers3,
   Sparkles,
 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const learningPaths = [
   {
@@ -146,8 +147,11 @@ const learningPaths = [
 ];
 
 export default function StudyPathCards() {
+  const sectionRef = useReveal();
+
   return (
     <section
+      ref={sectionRef}
       id="learning-paths"
       className="relative overflow-hidden bg-white py-16 sm:py-20"
     >
@@ -157,7 +161,7 @@ export default function StudyPathCards() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="mb-10 text-center">
+        <div className="reveal mb-10 text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-600">
             <Sparkles className="h-3.5 w-3.5" />
             Explore Learning Paths
@@ -174,7 +178,7 @@ export default function StudyPathCards() {
         </div>
 
         {/* Career / Technology Filter Visual */}
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
+        <div className="reveal reveal-delay-100 mb-8 flex flex-wrap items-center justify-center gap-2">
           <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-xs font-bold text-white">
             <BriefcaseBusiness className="h-3.5 w-3.5" />
             Career + Technology
@@ -191,13 +195,13 @@ export default function StudyPathCards() {
 
         {/* Cards */}
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {learningPaths.map((path) => {
+          {learningPaths.map((path, idx) => {
             const Icon = path.icon;
 
             return (
               <div
                 key={path.title}
-                className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/30"
+                className={`reveal reveal-delay-${((idx % 3) + 1) * 100} group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/30`}
               >
                 {/* Hover Glow */}
                 <div className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full bg-blue-100/50 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />

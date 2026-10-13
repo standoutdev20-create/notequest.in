@@ -23,7 +23,11 @@ export const metadata = {
     "Structured notes, learning resources and study paths for students and developers.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body>
