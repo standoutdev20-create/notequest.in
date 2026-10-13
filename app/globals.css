@@ -6,12 +6,21 @@
 
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
 
   --secondary: #7c3aed;
+  --secondary-light: #f5f3ff;
+
+  --accent: #06b6d4;
   --muted: #64748b;
 
   --card: #ffffff;
   --border: #e2e8f0;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-blue: 0 8px 30px rgba(37, 99, 235, 0.18);
 }
 
 * {
@@ -27,9 +36,16 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-jakarta), var(--font-inter), system-ui, sans-serif;
 }
 
@@ -42,50 +58,237 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Reusable gradient text */
-
+/* ─── Gradient Text ─── */
 .gradient-text {
-  background: linear-gradient(
-    90deg,
-    var(--primary),
-    var(--secondary)
-  );
-
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Reusable gradient background */
-
+/* ─── Gradient Background ─── */
 .gradient-bg {
-  background: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
-/* Main page container */
-
+/* ─── Section Container ─── */
 .section-container {
   width: min(1200px, calc(100% - 40px));
   margin-inline: auto;
 }
 
-/* Smooth UI transitions */
-
+/* ─── Smooth Transitions ─── */
 .transition-ui {
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
 }
 
-/* Selection */
-
+/* ─── Selection ─── */
 ::selection {
   background: #dbeafe;
   color: #1e3a8a;
+}
+
+/* ════════════════════════════════════════
+   KEYFRAME ANIMATIONS
+   ════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatReverse {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* ════════════════════════════════════════
+   SCROLL-TRIGGERED REVEAL ANIMATIONS
+   ════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.from-left {
+  transform: translateX(-28px);
+}
+
+.reveal.from-right {
+  transform: translateX(28px);
+}
+
+.reveal.scale {
+  transform: scale(0.92);
+  opacity: 0;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Stagger delays for child elements */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+.reveal-delay-6 { transition-delay: 0.48s; }
+
+/* ════════════════════════════════════════
+   ENTRANCE ANIMATIONS (Hero / first paint)
+   ════════════════════════════════════════ */
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Animation delay utilities */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+.animate-delay-600 { animation-delay: 0.6s; }
+.animate-delay-700 { animation-delay: 0.7s; }
+.animate-delay-800 { animation-delay: 0.8s; }
+
+/* ════════════════════════════════════════
+   FLOATING DECORATIVE ELEMENTS
+   ════════════════════════════════════════ */
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 4s ease-in-out 1.5s infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 5s ease-in-out infinite;
+}
+
+/* ════════════════════════════════════════
+   REUSABLE COMPONENT STYLES
+   ════════════════════════════════════════ */
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Premium card hover lift */
+.card-hover {
+  transition:
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.28s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Section badge / pill */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  background: rgba(239, 246, 255, 0.9);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.02em;
 }
