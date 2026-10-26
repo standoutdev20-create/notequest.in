@@ -8,7 +8,7 @@ const blogPosts = [
     author: "NoteQuest",
     date: "October 8, 2026",
     readTime: "8 min read",
-    image: "/images/blog/javascript-array-methods.png",
+    image: "/images/blog/Pexels.jpg",
     featured: true,
     content: [
       {
@@ -66,7 +66,7 @@ console.log(total);`
     author: "NoteQuest",
     date: "October 6, 2026",
     readTime: "7 min read",
-    image: "/images/blog/react-components.png",
+    image: "/images/blog/Pixabay.jpg",
     featured: false
   },
 
@@ -79,7 +79,7 @@ console.log(total);`
     author: "NoteQuest",
     date: "October 4, 2026",
     readTime: "9 min read",
-    image: "/images/blog/modern-web-development.png",
+    image: "/images/blog/Unsplash.jpg",
     featured: false
   },
 
@@ -92,7 +92,7 @@ console.log(total);`
     author: "NoteQuest",
     date: "October 2, 2026",
     readTime: "10 min read",
-    image: "/images/blog/data-structures.png",
+    image: "/images/blog/data-structures.jpg",
     featured: false
   },
 
@@ -105,7 +105,7 @@ console.log(total);`
     author: "NoteQuest",
     date: "September 30, 2026",
     readTime: "8 min read",
-    image: "/images/blog/sql-basics.png",
+    image: "/images/blog/sql-basics.jpg",
     featured: false
   },
 
@@ -118,7 +118,7 @@ console.log(total);`
     author: "NoteQuest",
     date: "September 28, 2026",
     readTime: "6 min read",
-    image: "/images/blog/tech-career.png",
+    image: "/images/blog/tech-career.jpg",
     featured: false
   }
 ];

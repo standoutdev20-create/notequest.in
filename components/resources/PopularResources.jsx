@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -109,17 +110,21 @@ const popularResources = [
 
 export default function PopularResources() {
   return (
-    <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white py-16 sm:py-20">
       {/* Background Glows */}
-      <div className="pointer-events-none absolute left-[-160px] top-20 h-80 w-80 rounded-full bg-blue-200/20 blur-[110px]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl" />
 
-      <div className="pointer-events-none absolute right-[-160px] bottom-10 h-80 w-80 rounded-full bg-purple-200/20 blur-[110px]" />
+        <div className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl" />
+
+        <div className="absolute bottom-0 left-1/2 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-purple-100 bg-purple-50 px-3 py-1.5 text-xs font-semibold text-purple-600">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-purple-100 bg-white/80 px-3 py-1.5 text-xs font-semibold text-purple-600 backdrop-blur-sm">
               <TrendingUp className="h-3.5 w-3.5" />
               Trending Now
             </div>
@@ -151,7 +156,7 @@ export default function PopularResources() {
             return (
               <article
                 key={resource.title}
-                className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/30"
+                className="group flex h-full flex-col rounded-3xl border border-white/80 bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/40"
               >
                 {/* Top */}
                 <div className="flex items-start justify-between gap-4">
@@ -230,3 +235,4 @@ export default function PopularResources() {
     </section>
   );
 }
+

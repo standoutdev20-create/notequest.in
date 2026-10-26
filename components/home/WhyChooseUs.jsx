@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Compass,
@@ -14,11 +15,27 @@ import {
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-[#F7F9FF] px-4 py-16 font-sans antialiased text-slate-800 sm:px-6 lg:px-8 lg:py-20">
-      <div className="section-container">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white px-4 py-16 font-sans text-slate-800 antialiased selection:bg-blue-200 sm:px-6 lg:px-8 lg:py-20">
+      {/* Background Glow Effects */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-32 -top-32 -z-10 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 top-20 -z-10 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl"
+      />
+
+      <div className="section-container relative z-10">
         {/* Header */}
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-sm">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100/80 bg-white/80 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-sm">
             <Compass className="h-4 w-4 text-indigo-600" />
             <span>Why Choose NoteQuest</span>
           </div>
@@ -37,13 +54,14 @@ export default function WhyChooseUs() {
         {/* Grid */}
         <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3">
           {/* Card 1 */}
-          <div className="flex flex-col justify-between rounded-[28px] border border-slate-100 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:p-6">
+          <div className="flex flex-col justify-between rounded-[28px] border border-blue-100/70 bg-white/85 p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-lg sm:p-6">
             {/* Image */}
             <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-[20px] bg-slate-100">
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop"
                 alt="Learner using NoteQuest"
-                className="h-full w-full object-cover"
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
               />
 
               {/* Floating Labels */}
@@ -77,9 +95,9 @@ export default function WhyChooseUs() {
           </div>
 
           {/* Card 2 */}
-          <div className="flex flex-col justify-between rounded-[28px] border border-slate-100 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:p-6">
+          <div className="flex flex-col justify-between rounded-[28px] border border-blue-100/70 bg-white/85 p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-lg sm:p-6">
             {/* Learning Hub */}
-            <div className="relative mb-6 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[20px] border border-slate-100/80 bg-gradient-to-b from-blue-50/40 via-purple-50/30 to-blue-50/20 p-6">
+            <div className="relative mb-6 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[20px] border border-blue-100/80 bg-gradient-to-b from-blue-50/70 via-purple-50/50 to-blue-50/40 p-6">
               {/* Center */}
               <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-white bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30">
                 <BookOpen className="h-8 w-8" />
@@ -166,7 +184,7 @@ export default function WhyChooseUs() {
           {/* Card 3 */}
           <div className="flex flex-col gap-6">
             {/* Learn Your Way */}
-            <div className="flex flex-1 flex-col justify-center rounded-[28px] border border-slate-100 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:p-6">
+            <div className="flex flex-1 flex-col justify-center rounded-[28px] border border-blue-100/70 bg-white/85 p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-lg sm:p-6">
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#3B82F6]">
                 <Bookmark className="h-5 w-5 fill-current" />
               </div>
@@ -182,10 +200,11 @@ export default function WhyChooseUs() {
             </div>
 
             {/* Checklist Image */}
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-slate-100 bg-slate-900 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-blue-100/70 bg-slate-900 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop"
                 alt="Students studying together"
+                loading="lazy"
                 className="h-full w-full object-cover opacity-85"
               />
 
@@ -199,7 +218,6 @@ export default function WhyChooseUs() {
                 ].map((text) => (
                   <div key={text} className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-600" />
-
                     <span className="text-[11px] font-bold tracking-tight text-slate-800">
                       {text}
                     </span>
@@ -213,3 +231,4 @@ export default function WhyChooseUs() {
     </section>
   );
 }
+

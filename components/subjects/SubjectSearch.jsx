@@ -3,35 +3,43 @@
 import { Search, SlidersHorizontal } from "lucide-react";
 
 export default function SubjectSearch() {
-  return (
-    <section className="bg-white py-10">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center">
-          
-          {/* Search */}
-          <div className="relative flex-1">
-            <Search
-              size={20}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"
-            />
+return ( <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white py-10">
+{/* Background Decorations */} <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"> <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl" />
 
-            <input
-              type="text"
-              placeholder="Search subjects..."
-              className="h-14 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-14 pr-5 text-sm text-slate-900 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-100"
-            />
-          </div>
+    <div className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl" />
 
-          {/* Filter Button */}
-          <button
-            type="button"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
-          >
-            <SlidersHorizontal size={18} />
-            Filters
-          </button>
-        </div>
+    <div className="absolute bottom-0 left-1/2 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl" />
+  </div>
+
+  <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="flex flex-col gap-4 md:flex-row md:items-center">
+      {/* Search */}
+      <div className="relative flex-1">
+        <Search
+          size={20}
+          className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"
+        />
+
+        <input
+          type="text"
+          placeholder="Search subjects..."
+          aria-label="Search subjects"
+          className="h-14 w-full rounded-2xl border border-white/80 bg-white/80 pl-14 pr-5 text-sm text-slate-900 shadow-sm backdrop-blur-sm outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-100"
+        />
       </div>
-    </section>
-  );
+
+      {/* Filter Button */}
+      <button
+        type="button"
+        className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-white/80 bg-white/80 px-6 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
+      >
+        <SlidersHorizontal size={18} />
+        Filters
+      </button>
+    </div>
+  </div>
+</section>
+
+
+);
 }

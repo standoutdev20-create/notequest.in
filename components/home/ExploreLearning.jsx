@@ -1,3 +1,4 @@
+
 const learningPaths = [
   {
     title: "Programming Languages",
@@ -58,8 +59,24 @@ const learningPaths = [
 
 export default function ExploreLearning() {
   return (
-    <section className="bg-slate-50 py-16 lg:py-20">
-      <div className="section-container">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white py-16 font-sans text-slate-800 antialiased selection:bg-blue-200 lg:py-20">
+      {/* Background Glow Effects */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-32 -top-32 -z-10 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 top-20 -z-10 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl"
+      />
+
+      <div className="section-container relative z-10">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-blue-600">
@@ -71,8 +88,8 @@ export default function ExploreLearning() {
           </h2>
 
           <p className="mt-4 text-base leading-7 text-slate-600">
-            Discover structured resources across the technologies,
-            concepts, and skills you need to grow in IT.
+            Discover structured resources across the technologies, concepts,
+            and skills you need to grow in IT.
           </p>
         </div>
 
@@ -81,13 +98,14 @@ export default function ExploreLearning() {
           {learningPaths.map((path) => (
             <div
               key={path.title}
-              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+              className="group relative overflow-hidden rounded-2xl border border-blue-100/80 bg-white/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-lg"
             >
               {/* Image */}
               <div className="relative h-32 w-full overflow-hidden bg-slate-100">
                 <img
                   src={path.image}
                   alt={path.title}
+                  loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
@@ -131,7 +149,7 @@ export default function ExploreLearning() {
               </div>
 
               {/* Bottom Gradient Line */}
-              <div className="absolute bottom-0 left-0 h-1 w-0 gradient-bg transition-all duration-300 group-hover:w-full" />
+              <div className="gradient-bg absolute bottom-0 left-0 h-1 w-0 transition-all duration-300 group-hover:w-full" />
             </div>
           ))}
         </div>
@@ -139,3 +157,4 @@ export default function ExploreLearning() {
     </section>
   );
 }
+

@@ -1,17 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  color-scheme: light;
 
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-
-  --secondary: #7c3aed;
-  --muted: #64748b;
-
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #262626;
+  --primary-dark: #111111;
+  --secondary: #525252;
+  --muted: #737373;
   --card: #ffffff;
-  --border: #e2e8f0;
+  --border: #e5e5e5;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #090909;
+  --foreground: #f5f5f5;
+  --primary: #f5f5f5;
+  --primary-dark: #d4d4d4;
+  --secondary: #a3a3a3;
+  --muted: #a3a3a3;
+  --card: #171717;
+  --border: #333333;
 }
 
 * {
@@ -27,6 +39,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 a {
@@ -38,22 +53,23 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Reusable gradient text */
+button {
+  cursor: pointer;
+}
 
+/* Reusable gradient text */
 .gradient-text {
   background: linear-gradient(
     90deg,
     var(--primary),
     var(--secondary)
   );
-
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 /* Reusable gradient background */
-
 .gradient-bg {
   background: linear-gradient(
     135deg,
@@ -63,14 +79,12 @@ a {
 }
 
 /* Main page container */
-
 .section-container {
   width: min(1200px, calc(100% - 40px));
   margin-inline: auto;
 }
 
 /* Smooth UI transitions */
-
 .transition-ui {
   transition:
     transform 0.2s ease,
@@ -80,8 +94,143 @@ a {
 }
 
 /* Selection */
-
 ::selection {
-  background: #dbeafe;
-  color: #1e3a8a;
+  background: #d4d4d4;
+  color: #171717;
+}
+
+/* ----------------------------------
+   DARK THEME: GLOBAL PAGE BACKGROUNDS
+----------------------------------- */
+
+html[data-theme="dark"] body {
+  background-color: #090909;
+  color: #f5f5f5;
+}
+
+/* Navbar and footer */
+html[data-theme="dark"] header,
+html[data-theme="dark"] footer {
+  background-color: #111111;
+  border-color: #333333;
+}
+
+/* White or light page sections */
+html[data-theme="dark"] section[class*="bg-white"],
+html[data-theme="dark"] section[class*="bg-slate-50"],
+html[data-theme="dark"] section[class*="bg-gradient-to-b"],
+html[data-theme="dark"] section[class*="bg-gradient-to-br"] {
+  background: linear-gradient(
+    180deg,
+    #090909 0%,
+    #111111 55%,
+    #090909 100%
+  ) !important;
+}
+
+/* Grayscale gradient backgrounds, without affecting gradient text */
+html[data-theme="dark"] [class*="bg-gradient-to-"]:not([class*="bg-clip-text"]) {
+  background-image: linear-gradient(
+    135deg,
+    #262626,
+    #111111
+  ) !important;
+}
+
+/* Cards, panels and light surfaces */
+html[data-theme="dark"] [class*="bg-white"],
+html[data-theme="dark"] [class*="bg-slate-50"],
+html[data-theme="dark"] [class*="bg-blue-50"],
+html[data-theme="dark"] [class*="bg-indigo-50"],
+html[data-theme="dark"] [class*="bg-purple-50"],
+html[data-theme="dark"] [class*="bg-rose-50"],
+html[data-theme="dark"] [class*="bg-emerald-50"],
+html[data-theme="dark"] [class*="bg-sky-50"],
+html[data-theme="dark"] [class*="bg-orange-50"] {
+  background-color: #171717;
+}
+
+/* Keep primary action buttons monochrome */
+html[data-theme="dark"] .gradient-bg,
+html[data-theme="dark"] a[class*="bg-gradient-to-"]:not([class*="bg-clip-text"]),
+html[data-theme="dark"] button[class*="bg-gradient-to-"]:not([class*="bg-clip-text"]) {
+  background: linear-gradient(135deg, #f5f5f5, #d4d4d4) !important;
+  color: #111111 !important;
+}
+
+/* Headings and primary text */
+html[data-theme="dark"] [class*="text-slate-900"],
+html[data-theme="dark"] [class*="text-slate-800"],
+html[data-theme="dark"] [class*="text-gray-900"],
+html[data-theme="dark"] [class*="text-gray-800"] {
+  color: #f5f5f5 !important;
+}
+
+/* Secondary text */
+html[data-theme="dark"] [class*="text-slate-700"],
+html[data-theme="dark"] [class*="text-slate-600"],
+html[data-theme="dark"] [class*="text-slate-500"],
+html[data-theme="dark"] [class*="text-gray-700"],
+html[data-theme="dark"] [class*="text-gray-600"],
+html[data-theme="dark"] [class*="text-gray-500"] {
+  color: #bdbdbd !important;
+}
+
+/* Light borders */
+html[data-theme="dark"] [class*="border-slate-"],
+html[data-theme="dark"] [class*="border-gray-"],
+html[data-theme="dark"] [class*="border-blue-100"],
+html[data-theme="dark"] [class*="border-indigo-100"],
+html[data-theme="dark"] [class*="border-purple-100"],
+html[data-theme="dark"] [class*="border-white"] {
+  border-color: #333333 !important;
+}
+
+/* Form fields */
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background-color: #171717;
+  color: #f5f5f5;
+  border-color: #404040;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: #888888;
+}
+
+/* Theme toggle button */
+html[data-theme="dark"] header button {
+  background-color: #222222;
+  color: #f5f5f5;
+  border-color: #404040;
+}
+
+/* Keep ambient decorative glows subtle and neutral */
+html[data-theme="dark"] [class*="blur-3xl"],
+html[data-theme="dark"] [class*="blur-["] {
+  opacity: 0.12;
+}
+
+/* Avoid bright blue hover colors in dark mode */
+html[data-theme="dark"] a:hover {
+  transition: color 0.2s ease;
+}
+
+html[data-theme="dark"] a[class*="hover:text-blue-"]:hover,
+html[data-theme="dark"] nav a:hover {
+  color: #ffffff !important;
+}
+
+/* Smooth theme transition */
+html[data-theme="dark"] body,
+html[data-theme="dark"] header,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] section,
+html[data-theme="dark"] main {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }

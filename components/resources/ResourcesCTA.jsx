@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -12,13 +13,15 @@ import {
 
 export default function ResourcesCTA() {
   return (
-    <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white py-16 sm:py-20">
       {/* Background Glows */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-200/20 blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl" />
 
-      <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-indigo-200/20 blur-[100px]" />
+        <div className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl" />
 
-      <div className="pointer-events-none absolute -right-32 top-0 h-72 w-72 rounded-full bg-purple-200/20 blur-[100px]" />
+        <div className="absolute bottom-0 left-1/2 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-purple-50 px-6 py-12 text-center shadow-xl shadow-blue-100/30 sm:px-10 sm:py-16">
@@ -72,7 +75,7 @@ export default function ResourcesCTA() {
 
               <Link
                 href="/practice"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
               >
                 Practice Problems
               </Link>
@@ -83,3 +86,4 @@ export default function ResourcesCTA() {
     </section>
   );
 }
+

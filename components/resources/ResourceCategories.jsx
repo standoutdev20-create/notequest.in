@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -56,16 +57,20 @@ const categories = [
 
 export default function ResourceCategories() {
   return (
-    <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white py-16 sm:py-20">
       {/* Background Glows */}
-      <div className="pointer-events-none absolute -left-40 top-10 h-80 w-80 rounded-full bg-blue-200/20 blur-[110px]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl" />
 
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-80 w-80 rounded-full bg-purple-200/20 blur-[110px]" />
+        <div className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl" />
+
+        <div className="absolute bottom-0 left-1/2 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-600">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-white/80 px-3 py-1.5 text-xs font-semibold text-indigo-600 backdrop-blur-sm">
             <Sparkles className="h-3.5 w-3.5" />
             Explore Resources
           </div>
@@ -89,7 +94,7 @@ export default function ResourceCategories() {
               <Link
                 key={category.title}
                 href={category.href}
-                className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/30"
+                className="group relative overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/40"
               >
                 {/* Hover Glow */}
                 <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-blue-100/40 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
@@ -98,9 +103,7 @@ export default function ResourceCategories() {
                 <div
                   className={`relative flex h-12 w-12 items-center justify-center rounded-2xl ${category.iconBg}`}
                 >
-                  <Icon
-                    className={`h-6 w-6 ${category.iconColor}`}
-                  />
+                  <Icon className={`h-6 w-6 ${category.iconColor}`} />
                 </div>
 
                 {/* Content */}
@@ -132,3 +135,4 @@ export default function ResourceCategories() {
     </section>
   );
 }
+

@@ -15,54 +15,54 @@ import {
 
 export default function ResourcesBanner() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#EDF4FF] via-[#F7F8FE] to-white">
-      {/* ================= BACKGROUND ================= */}
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        {/* Blue Animated Glow */}
+        <div className="absolute -left-32 -top-32 h-[420px] w-[420px] animate-pulse rounded-full bg-blue-300/20 blur-3xl" />
 
-      {/* Blue Animated Glow */}
-      <div className="pointer-events-none absolute -left-40 -top-32 h-[430px] w-[430px] animate-pulse rounded-full bg-blue-300/25 blur-[110px]" />
+        {/* Purple Animated Glow */}
+        <div
+          className="absolute -right-32 top-20 h-[420px] w-[420px] animate-pulse rounded-full bg-purple-300/20 blur-3xl"
+          style={{ animationDelay: "700ms" }}
+        />
 
-      {/* Purple Animated Glow */}
-      <div
-        className="pointer-events-none absolute -right-40 -top-20 h-[450px] w-[450px] animate-pulse rounded-full bg-purple-300/25 blur-[115px]"
-        style={{ animationDelay: "700ms" }}
-      />
+        {/* Soft Coral Glow */}
+        <div
+          className="absolute left-[42%] top-[18%] h-[220px] w-[220px] animate-pulse rounded-full bg-rose-300/15 blur-[100px]"
+          style={{ animationDelay: "1200ms" }}
+        />
 
-      {/* Soft Coral / Red Glow */}
-      <div
-        className="pointer-events-none absolute left-[42%] top-[18%] h-[220px] w-[220px] animate-pulse rounded-full bg-rose-300/15 blur-[100px]"
-        style={{ animationDelay: "1200ms" }}
-      />
+        {/* Bottom Indigo Glow */}
+        <div
+          className="absolute bottom-[-120px] left-1/2 h-[360px] w-[600px] -translate-x-1/2 animate-pulse rounded-full bg-indigo-300/20 blur-[120px]"
+          style={{ animationDelay: "500ms" }}
+        />
 
-      {/* Bottom Indigo Glow */}
-      <div
-        className="pointer-events-none absolute bottom-[-120px] left-1/2 h-[360px] w-[600px] -translate-x-1/2 animate-pulse rounded-full bg-indigo-300/20 blur-[120px]"
-        style={{ animationDelay: "500ms" }}
-      />
+        {/* Moving Light */}
+        <div
+          className="absolute left-[20%] top-[30%] h-24 w-24 animate-pulse rounded-full bg-sky-300/20 blur-[60px]"
+          style={{ animationDelay: "900ms" }}
+        />
 
-      {/* Moving Light */}
-      <div
-        className="pointer-events-none absolute left-[20%] top-[30%] h-24 w-24 animate-pulse rounded-full bg-sky-300/20 blur-[60px]"
-        style={{ animationDelay: "900ms" }}
-      />
-
-      {/* Subtle Grid */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.16]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(99,102,241,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.08) 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
-        }}
-      />
+        {/* Subtle Grid */}
+        <div
+          className="absolute inset-0 opacity-[0.16]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(99,102,241,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.08) 1px, transparent 1px)",
+            backgroundSize: "36px 36px",
+          }}
+        />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-        {/* ================= IMAGE AREA ================= */}
-
+        {/* Image Area */}
         <div className="relative flex min-h-[430px] items-center justify-center sm:min-h-[500px]">
           {/* Large Image Glow */}
           <div className="absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-gradient-to-tr from-blue-300/30 via-indigo-300/25 to-purple-300/30 blur-[90px] sm:h-[500px] sm:w-[500px]" />
 
-          {/* Coral Light Behind Image */}
+          {/* Coral Light */}
           <div
             className="absolute left-[25%] top-[35%] h-28 w-28 animate-pulse rounded-full bg-rose-300/20 blur-[70px]"
             style={{ animationDelay: "1000ms" }}
@@ -79,9 +79,7 @@ export default function ResourcesBanner() {
               <span
                 key={index}
                 className="h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-400"
-                style={{
-                  animationDelay: `${index * 120}ms`,
-                }}
+                style={{ animationDelay: `${index * 120}ms` }}
               />
             ))}
           </div>
@@ -131,13 +129,10 @@ export default function ResourcesBanner() {
             <Bookmark className="h-5 w-5" />
           </div>
 
-          {/* ================= MAIN IMAGE ================= */}
-
+          {/* Main Image */}
           <div className="relative z-10 flex w-full items-center justify-center">
-            {/* Image Glow */}
             <div className="absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-blue-300/20 via-purple-300/20 to-rose-300/15 blur-[90px]" />
 
-            {/* Image With Full Edge Fade */}
             <div
               className="relative w-full max-w-[650px]"
               style={{
@@ -159,11 +154,10 @@ export default function ResourcesBanner() {
           </div>
 
           {/* Bottom Atmospheric Fade */}
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-28 bg-gradient-to-t from-[#F7F8FE] via-[#F7F8FE]/50 to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-28 bg-gradient-to-t from-[#F4F8FE] via-[#F4F8FE]/50 to-transparent" />
         </div>
 
-        {/* ================= TEXT ================= */}
-
+        {/* Text */}
         <div className="relative z-30 mx-auto -mt-1 max-w-3xl text-center sm:-mt-3">
           {/* Badge */}
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white/80 px-4 py-2 text-xs font-semibold text-indigo-600 shadow-sm backdrop-blur">
@@ -219,3 +213,4 @@ export default function ResourcesBanner() {
     </section>
   );
 }
+

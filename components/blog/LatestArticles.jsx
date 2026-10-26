@@ -1,9 +1,10 @@
+
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 import blogPosts from "../../data/blogPosts";
 
@@ -12,13 +13,16 @@ export default function LatestArticles() {
 
   const totalCards = blogPosts.length;
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalCards);
-  };
+  // Automatically slide every 3 seconds
+  useEffect(() => {
+    if (totalCards <= 1) return;
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalCards) % totalCards);
-  };
+    const slideInterval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalCards);
+    }, 3000);
+
+    return () => clearInterval(slideInterval);
+  }, [totalCards]);
 
   const getCardPosition = (index) => {
     if (index === currentIndex) {
@@ -47,7 +51,7 @@ export default function LatestArticles() {
       <div className="absolute right-[-100px] bottom-20 h-80 w-80 rounded-full bg-purple-400/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* ================= HEADING ================= */}
+        {/* Heading */}
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-sm font-semibold text-blue-600">
@@ -64,38 +68,18 @@ export default function LatestArticles() {
             </p>
           </div>
 
-          {/* Controls */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/blog"
-              className="group mr-2 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition hover:text-blue-700"
-            >
-              View all articles
+          {/* View All Link */}
+          <Link
+            href="/blog"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition hover:text-blue-700"
+          >
+            View all articles
 
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-            </Link>
-
-            <button
-              type="button"
-              onClick={prevSlide}
-              aria-label="Previous article"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </button>
-
-            <button
-              type="button"
-              onClick={nextSlide}
-              aria-label="Next article"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
-            >
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+          </Link>
         </div>
 
-        {/* ================= DESKTOP CAROUSEL ================= */}
+        {/* Desktop Carousel */}
         <div className="relative mt-12 hidden h-[390px] md:block">
           {blogPosts.map((article, index) => {
             const position = getCardPosition(index);
@@ -143,7 +127,7 @@ export default function LatestArticles() {
                     sizes="(max-width: 1024px) 60vw, 34vw"
                   />
 
-                  {/* Main Dark Overlay */}
+                  {/* Dark Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent" />
 
                   {/* Color Glow */}
@@ -158,7 +142,7 @@ export default function LatestArticles() {
                     </span>
                   </div>
 
-                  {/* Center Content */}
+                  {/* Article Content */}
                   <div className="absolute inset-x-5 bottom-5">
                     <h3 className="line-clamp-2 text-xl font-bold leading-7 text-white drop-shadow-lg">
                       {article.title}
@@ -184,7 +168,7 @@ export default function LatestArticles() {
           })}
         </div>
 
-        {/* ================= MOBILE ================= */}
+        {/* Mobile Auto-Slider */}
         <div className="relative mt-10 md:hidden">
           <div className="overflow-hidden">
             <div
@@ -210,14 +194,17 @@ export default function LatestArticles() {
                       sizes="100vw"
                     />
 
+                    {/* Dark Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent" />
 
+                    {/* Category */}
                     <div className="absolute left-5 top-5">
                       <span className="rounded-full border border-white/30 bg-white/90 px-3 py-1.5 text-xs font-semibold text-blue-700 shadow-lg backdrop-blur">
                         {article.category}
                       </span>
                     </div>
 
+                    {/* Article Content */}
                     <div className="absolute inset-x-5 bottom-5">
                       <h3 className="line-clamp-2 text-xl font-bold leading-7 text-white">
                         {article.title}
@@ -242,58 +229,6 @@ export default function LatestArticles() {
               ))}
             </div>
           </div>
-
-          {/* Mobile Controls */}
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={prevSlide}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </button>
-
-            <div className="flex items-center gap-1.5">
-              {blogPosts.map((article, index) => (
-                <button
-                  key={article.slug}
-                  type="button"
-                  onClick={() => setCurrentIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    currentIndex === index
-                      ? "w-6 bg-blue-600"
-                      : "w-2 bg-slate-300"
-                  }`}
-                  aria-label={`Go to article ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={nextSlide}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm"
-            >
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Desktop Dots */}
-        <div className="mt-4 hidden items-center justify-center gap-2 md:flex">
-          {blogPosts.map((article, index) => (
-            <button
-              key={article.slug}
-              type="button"
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to article ${index + 1}`}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                currentIndex === index
-                  ? "w-7 bg-blue-600"
-                  : "w-2.5 bg-slate-300 hover:bg-slate-400"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>

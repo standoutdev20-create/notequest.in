@@ -7,7 +7,6 @@ import {
   Smartphone,
   Cpu,
   Network,
-  ArrowUpRight,
 } from "lucide-react";
 
 import SubjectCard from "./SubjectCard";
@@ -28,12 +27,16 @@ export default function SubjectCategories() {
   return (
     <section
       id="subjects"
-      className="relative overflow-hidden bg-slate-50 py-20 lg:py-24"
+      className="relative isolate overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white py-20 lg:py-24"
     >
-      {/* Background Decoration */}
-      <div className="absolute -left-32 top-20 h-80 w-80 rounded-full bg-blue-400/10 blur-3xl" />
+      {/* Hero-style Background Glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl" />
 
-      <div className="absolute -right-32 bottom-10 h-96 w-96 rounded-full bg-purple-400/10 blur-3xl" />
+        <div className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl" />
+
+        <div className="absolute bottom-0 left-1/2 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl" />
+      </div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Heading */}
@@ -70,7 +73,29 @@ export default function SubjectCategories() {
             );
           })}
         </div>
+
+        {/* Bottom Information */}
+        <div className="mt-10 rounded-3xl border border-blue-100/80 bg-gradient-to-r from-blue-50/90 via-white/90 to-purple-50/90 p-6 shadow-sm backdrop-blur-sm sm:p-8">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-blue-600 shadow-sm">
+              <Code2 size={22} />
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-900">
+                Learn one concept at a time
+              </h3>
+
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                Explore your interests, strengthen your fundamentals, and
+                gradually develop practical IT skills.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+
+

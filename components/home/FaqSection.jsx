@@ -1,9 +1,9 @@
-'use client';
 
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState } from "react";
 import {
   ChevronDown,
-  HelpCircle,
   MessageSquare,
   BookOpen,
   Clock,
@@ -12,54 +12,53 @@ import {
   Headphones,
   ArrowRight,
   HelpCircle as QuestionIcon,
-} from 'lucide-react';
+} from "lucide-react";
 
 const faqs = [
   {
     id: 1,
-    question: 'Do I need prior experience to start learning on NetQuest?',
+    question: "Do I need prior experience to start learning on NetQuest?",
     answer:
-      'No. NetQuest is designed for learners at different skill levels. Explore foundational concepts, structured learning resources, and practice material at your own pace without prerequisite barriers.',
+      "No. NetQuest is designed for learners at different skill levels. Explore foundational concepts, structured learning resources, and practice material at your own pace without prerequisite barriers.",
     icon: GraduationCapIcon,
   },
   {
     id: 2,
-    question: 'What kind of learning resources does NetQuest provide?',
+    question: "What kind of learning resources does NetQuest provide?",
     answer:
-      'NetQuest provides curated notes, video tutorials, reference docs, interactive code snippets, and practice problems organized by topics.',
+      "NetQuest provides curated notes, video tutorials, reference docs, interactive code snippets, and practice problems organized by topics.",
     icon: BookOpen,
   },
   {
     id: 3,
-    question: 'How are topics and learning resources organized?',
+    question: "How are topics and learning resources organized?",
     answer:
-      'Resources are organized systematically by technology tracks, difficulty levels, and step-by-step learning roadmaps.',
+      "Resources are organized systematically by technology tracks, difficulty levels, and step-by-step learning roadmaps.",
     icon: Code,
   },
   {
     id: 4,
-    question: 'Can I learn at my own pace?',
+    question: "Can I learn at my own pace?",
     answer:
-      'Yes, all content is self-paced. You can access materials anytime, track your progress, and revisit concepts Whenever needed.',
+      "Yes, all content is self-paced. You can access materials anytime, track your progress, and revisit concepts whenever needed.",
     icon: Clock,
   },
   {
     id: 5,
-    question: 'Can I practice what I learn on NetQuest?',
+    question: "Can I practice what I learn on NetQuest?",
     answer:
-      'Yes, we offer practice exercises and interactive components to reinforce your conceptual understanding.',
+      "Yes, we offer practice exercises and interactive components to reinforce your conceptual understanding.",
     icon: Code,
   },
   {
     id: 6,
-    question: 'Can I access NetQuest on mobile devices?',
+    question: "Can I access NetQuest on mobile devices?",
     answer:
-      'Yes, NetQuest is fully responsive and optimized for mobile, tablet, and desktop browsing.',
+      "Yes, NetQuest is fully responsive and optimized for mobile, tablet, and desktop browsing.",
     icon: Smartphone,
   },
 ];
 
-// Helper icon component matching the image design
 function GraduationCapIcon(props) {
   return (
     <svg
@@ -82,68 +81,73 @@ export default function FaqSection() {
   const [openId, setOpenId] = useState(1);
 
   const toggleAccordion = (id) => {
-    setOpenId(openId === id ? null : id);
+    setOpenId((currentId) => (currentId === id ? null : id));
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-[#EBF3FF] via-[#F4F7FF] to-[#EBF3FF] py-20 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+    <section className="relative isolate min-h-screen overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white px-4 py-20 font-sans text-slate-800 antialiased selection:bg-blue-200 sm:px-6 lg:px-8">
+      {/* Background Glow Effects */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-32 -top-32 -z-10 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl"
+      />
 
-      {/* Background Radial Light Glow Effects */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-200/40 rounded-full blur-3xl pointer-events-none" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 top-20 -z-10 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl"
+      />
 
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-indigo-200/40 rounded-full blur-3xl pointer-events-none" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl"
+      />
 
-      <div className="relative max-w-4xl mx-auto">
-
-        {/* --- Top Floating Badges & Header --- */}
-        <div className="relative text-center mb-12">
-
-          {/* Floating Pill Badges (Left & Right) */}
-          <div className="hidden sm:flex justify-between items-center absolute -top-4 left-0 right-0 pointer-events-none">
-
-            <div className="inline-flex items-center gap-1.5 bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/60 text-[11px] font-semibold text-slate-600 shadow-sm">
-              <Clock className="w-3.5 h-3.5 text-blue-600" />
+      <div className="relative z-10 mx-auto max-w-4xl">
+        {/* Top Floating Badges & Header */}
+        <div className="relative mb-12 text-center">
+          {/* Floating Pill Badges */}
+          <div className="absolute -top-4 right-0 left-0 hidden items-center justify-between sm:flex">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/60 bg-white/80 px-3.5 py-1.5 text-[11px] font-semibold text-slate-600 shadow-sm backdrop-blur-md">
+              <Clock className="h-3.5 w-3.5 text-blue-600" />
               <span>FAQ / SUPPORT</span>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/60 text-[11px] font-semibold text-slate-600 shadow-sm">
-              <MessageSquare className="w-3.5 h-3.5 text-blue-600" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/60 bg-white/80 px-3.5 py-1.5 text-[11px] font-semibold text-slate-600 shadow-sm backdrop-blur-md">
+              <MessageSquare className="h-3.5 w-3.5 text-blue-600" />
               <span>24/7 Knowledge Base</span>
             </div>
-
           </div>
 
           {/* Center Primary Tag */}
-          <div className="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full border border-blue-100 text-xs font-semibold text-blue-600 shadow-sm mb-6">
-            <QuestionIcon className="w-4 h-4 text-blue-600" />
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-4 py-1.5 text-xs font-semibold text-blue-600 shadow-sm backdrop-blur-sm">
+            <QuestionIcon className="h-4 w-4 text-blue-600" />
             <span>FREQUENTLY ASKED QUESTIONS</span>
           </div>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-            Questions?{' '}
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            Questions?{" "}
             <span className="text-[#3B82F6]">
               We’ve Got You Covered.
             </span>
           </h2>
 
           {/* Subtitle */}
-          <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed">
-            Find answers to common questions about NetQuest, learning resources, and your engineering journey.
+          <p className="mx-auto max-w-lg text-xs leading-relaxed text-slate-500 sm:text-sm">
+            Find answers to common questions about NetQuest, learning
+            resources, and your engineering journey.
           </p>
 
           {/* Dot Indicator */}
-          <div className="flex items-center justify-center gap-1.5 mt-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-            <span className="w-8 h-0.5 bg-blue-300 rounded-full" />
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+          <div className="mt-4 flex items-center justify-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+            <span className="h-0.5 w-8 rounded-full bg-blue-300" />
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
           </div>
-
         </div>
 
-        {/* --- FAQ Accordion List --- */}
-        <div className="space-y-3.5 mb-8">
-
+        {/* FAQ Accordion List */}
+        <div className="mb-8 space-y-3.5">
           {faqs.map((faq) => {
             const isOpen = openId === faq.id;
             const IconComponent = faq.icon;
@@ -151,83 +155,78 @@ export default function FaqSection() {
             return (
               <div
                 key={faq.id}
-                className={`rounded-2xl transition-all duration-300 border ${
+                className={`relative overflow-hidden rounded-2xl border transition-all duration-300 ${
                   isOpen
-                    ? 'bg-[#EEF4FF] border-blue-200/80 shadow-sm'
-                    : 'bg-white border-slate-100 hover:border-slate-200 shadow-sm'
+                    ? "border-blue-200/80 bg-[#EEF4FF]/90 shadow-sm backdrop-blur-sm"
+                    : "border-blue-100/70 bg-white/80 shadow-sm backdrop-blur-sm hover:border-blue-200 hover:bg-white"
                 }`}
               >
-
                 <button
+                  type="button"
                   onClick={() => toggleAccordion(faq.id)}
-                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left focus:outline-none"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${faq.id}`}
+                  className="flex w-full items-center justify-between p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 sm:p-5"
                 >
-
                   <div className="flex items-center gap-3.5">
-
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors ${
                         isOpen
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-blue-50 text-blue-600'
+                          ? "bg-blue-600 text-white"
+                          : "bg-blue-50 text-blue-600"
                       }`}
                     >
-                      <IconComponent className="w-4 h-4" />
+                      <IconComponent className="h-4 w-4" />
                     </div>
 
-                    <span className="text-sm sm:text-base font-bold text-slate-800">
+                    <span className="text-sm font-bold text-slate-800 sm:text-base">
                       {faq.question}
                     </span>
-
                   </div>
 
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-blue-600' : ''
+                    className={`ml-3 h-5 w-5 shrink-0 text-slate-400 transition-transform duration-300 ${
+                      isOpen ? "rotate-180 text-blue-600" : ""
                     }`}
                   />
-
                 </button>
 
                 {/* Expanded Answer */}
                 {isOpen && (
-                  <div className="px-5 pb-5 pl-16 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-blue-100/40 pt-3">
+                  <div
+                    id={`faq-answer-${faq.id}`}
+                    className="border-t border-blue-100/60 px-5 pb-5 pt-3 text-xs leading-relaxed text-slate-600 sm:pl-16 sm:text-sm"
+                  >
                     {faq.answer}
                   </div>
                 )}
-
               </div>
             );
           })}
-
         </div>
 
-        {/* --- Bottom Support Callout Card --- */}
-        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-
+        {/* Bottom Support Callout Card */}
+        <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-blue-100/70 bg-white/80 p-4 shadow-sm backdrop-blur-sm sm:flex-row sm:p-5">
           <div className="flex items-center gap-3.5">
-
-            <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-              <Headphones className="w-4 h-4" />
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <Headphones className="h-4 w-4" />
             </div>
 
-            <span className="text-xs sm:text-sm font-semibold text-slate-700">
+            <span className="text-xs font-semibold text-slate-700 sm:text-sm">
               Still have questions or need personalized guidance?
             </span>
-
           </div>
 
           <a
             href="#support"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors shrink-0"
+            className="inline-flex shrink-0 items-center gap-1.5 text-xs font-bold text-blue-600 transition-colors hover:text-blue-700"
           >
             <span>Reach out to our learning support team</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="h-3.5 w-3.5" />
           </a>
-
         </div>
-
       </div>
     </section>
   );
 }
+

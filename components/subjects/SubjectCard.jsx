@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -37,7 +38,7 @@ export default function SubjectCard({
   return (
     <Link
       href={href}
-      className={`group relative block overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${styles.hover}`}
+      className={`group relative block overflow-hidden rounded-3xl border border-slate-200/80 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${styles.hover}`}
     >
       {/* Decorative background */}
       <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-slate-50 transition-transform duration-500 group-hover:scale-150" />
@@ -52,9 +53,7 @@ export default function SubjectCard({
 
         {/* Content */}
         <div className="mt-6">
-          <h3 className="text-xl font-bold text-slate-900">
-            {title}
-          </h3>
+          <h3 className="text-xl font-bold text-slate-900">{title}</h3>
 
           <p className="mt-3 min-h-[72px] text-sm leading-6 text-slate-600">
             {description}
@@ -73,7 +72,6 @@ export default function SubjectCard({
         {/* Explore */}
         <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors group-hover:text-blue-600">
           Explore Subject
-
           <ArrowRight
             size={17}
             className="transition-transform duration-300 group-hover:translate-x-1"
@@ -83,3 +81,4 @@ export default function SubjectCard({
     </Link>
   );
 }
+
