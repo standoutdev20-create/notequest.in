@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const features = [
@@ -8,42 +8,43 @@ const features = [
     title: "Structured Notes",
     description:
       "Understand concepts through simple, organized and easy-to-follow notes.",
-    image: "/images/structured-notes.png",
+    image: "/images/features/structured-notes.jpg",
   },
   {
     title: "Learning Videos",
     description:
       "Learn difficult concepts through practical and focused video resources.",
-    image: "/images/learning-videos.png",
+    image: "/images/features/learning-videos.jpg",
   },
   {
     title: "References",
     description:
       "Find useful documentation, guides and references for deeper learning.",
-    image: "/images/references.png",
+    image: "/images/features/references.jpg",
   },
   {
     title: "Practice",
     description:
       "Strengthen your knowledge through questions, coding and practical exercises.",
-    image: "/images/practice.png",
+    image: "/images/features/practice.jpg",
   },
   {
     title: "Study Paths",
     description:
       "Follow structured learning paths designed to guide you from basics to advanced concepts.",
-    image: "/images/study-paths.png",
+    image: "/images/features/study-paths.jpg",
   },
   {
     title: "Project Ideas",
     description:
       "Turn your knowledge into practical projects and build real development experience.",
-    image: "/images/project-ideas.png",
+    image: "/images/features/project-ideas.jpg",
   },
 ];
 
 export default function FeatureCards() {
   const [currentIndex, setCurrentIndex] = useState(1);
+  const [paused, setPaused] = useState(false);
 
   const totalCards = features.length;
 
@@ -54,6 +55,16 @@ export default function FeatureCards() {
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + totalCards) % totalCards);
   };
+
+  // Autoplay; restarts after every manual change and pauses on hover.
+  useEffect(() => {
+    if (paused) return;
+    const id = setTimeout(
+      () => setCurrentIndex((prev) => (prev + 1) % totalCards),
+      4000
+    );
+    return () => clearTimeout(id);
+  }, [currentIndex, paused, totalCards]);
 
   const getCardPosition = (index) => {
     const leftIndex = (currentIndex - 1 + totalCards) % totalCards;
@@ -70,10 +81,16 @@ export default function FeatureCards() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-white py-20 lg:py-24">
+    <section
+      className="relative overflow-hidden bg-white py-20 lg:py-24"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
       {/* Background Glow */}
-      <div className="absolute left-[-120px] top-40 h-80 w-80 rounded-full bg-blue-400/10 blur-3xl" />
-      <div className="absolute right-[-120px] bottom-20 h-96 w-96 rounded-full bg-purple-400/10 blur-3xl" />
+      <div className="absolute left-[-120px] top-40 h-80 w-80 rounded-full bg-blue-400/10 blur-3xl animate-blob" />
+      <div className="absolute right-[-120px] bottom-20 h-96 w-96 rounded-full bg-purple-400/10 blur-3xl animate-blob" style={{ animationDelay: "-8s" }} />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Heading */}
@@ -126,7 +143,7 @@ export default function FeatureCards() {
                 className={`
                   absolute left-1/2 top-1/2
                   w-[25%]
-                  transition-all duration-700 ease-in-out
+                  transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]
 
                   ${
                     position === "middle-left"

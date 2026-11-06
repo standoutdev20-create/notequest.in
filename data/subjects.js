@@ -4,7 +4,7 @@ export const subjects = [
     title: "Programming Languages",
     description:
       "Learn programming fundamentals and build strong coding skills with popular programming languages.",
-    image: "/images/subjects/programming.png",
+    image: "/images/subjects/programming.jpg",
     topics: 12,
     level: "Beginner to Advanced",
     duration: "8–12 Weeks",
@@ -59,7 +59,7 @@ export const subjects = [
     title: "Web Development",
     description:
       "Learn how modern websites and web applications are designed and built.",
-    image: "/images/subjects/web-development.png",
+    image: "/images/subjects/web-development.jpg",
     topics: 15,
     level: "Beginner to Advanced",
     duration: "10–14 Weeks",
@@ -120,7 +120,7 @@ export const subjects = [
     title: "Data Structures & Algorithms",
     description:
       "Build strong problem-solving skills with essential data structures and algorithms.",
-    image: "/images/subjects/dsa.png",
+    image: "/images/subjects/dsa.jpg",
     topics: 18,
     level: "Beginner to Advanced",
     duration: "10–16 Weeks",
@@ -184,7 +184,7 @@ export const subjects = [
     title: "Database & SQL",
     description:
       "Understand databases, SQL queries, data modeling and database management.",
-    image: "/images/subjects/database.png",
+    image: "/images/subjects/database.jpg",
     topics: 10,
     level: "Beginner to Advanced",
     duration: "6–10 Weeks",
@@ -241,7 +241,7 @@ export const subjects = [
     title: "AI & Machine Learning",
     description:
       "Explore artificial intelligence, machine learning concepts and practical applications.",
-    image: "/images/subjects/ai.png",
+    image: "/images/subjects/ai.jpg",
     topics: 14,
     level: "Beginner to Advanced",
     duration: "10–16 Weeks",
@@ -300,7 +300,7 @@ export const subjects = [
     title: "Cloud & DevOps",
     description:
       "Learn cloud platforms, deployment, DevOps practices and modern infrastructure.",
-    image: "/images/subjects/cloud.png",
+    image: "/images/subjects/cloud.jpg",
     topics: 11,
     level: "Beginner to Advanced",
     duration: "8–12 Weeks",
@@ -357,7 +357,7 @@ export const subjects = [
     title: "Mobile Development",
     description:
       "Explore mobile application development and the technologies behind modern apps.",
-    image: "/images/subjects/mobile.png",
+    image: "/images/subjects/mobile.jpg",
     topics: 9,
     level: "Beginner to Advanced",
     duration: "8–12 Weeks",
@@ -410,7 +410,7 @@ export const subjects = [
     title: "Computer Networks",
     description:
       "Understand networking fundamentals, protocols, security and communication systems.",
-    image: "/images/subjects/networks.png",
+    image: "/images/subjects/networks.jpg",
     topics: 13,
     level: "Beginner to Advanced",
     duration: "6–10 Weeks",

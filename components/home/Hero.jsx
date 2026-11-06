@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Search,
   ArrowRight,
@@ -15,45 +15,58 @@ import {
   Layers,
 } from "lucide-react";
 
+const rotatingWords = ["Learn IT.", "Build Skills.", "Practice Daily.", "Grow Faster."];
+
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setWordIndex((i) => (i + 1) % rotatingWords.length),
+      2600
+    );
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white font-sans text-slate-800 antialiased selection:bg-blue-200">
+    <div data-no-reveal className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-[#EBF3FF] via-[#F4F8FE] to-white font-sans text-slate-800 antialiased selection:bg-blue-200">
       {/* Background Glows */}
-      <div className="pointer-events-none absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl" />
-      <div className="pointer-events-none absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-300/20 blur-3xl animate-blob" />
+      <div className="pointer-events-none absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-purple-300/20 blur-3xl animate-blob" style={{ animationDelay: "-6s" }} />
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-[320px] w-[520px] -translate-x-1/2 rounded-full bg-indigo-200/20 blur-3xl" />
 
       {/* Main */}
-      <main className="relative z-10 mx-auto max-w-6xl px-4 pt-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pt-10 sm:px-6 lg:px-8">
         {/* Hero Intro */}
         <div className="mx-auto max-w-4xl text-center">
           {/* Badge */}
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-semibold text-blue-600 shadow-sm backdrop-blur">
-            <GraduationCap className="h-4 w-4" />
+          <div className="animate-fade-up mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-semibold text-blue-600 shadow-sm backdrop-blur">
+            <GraduationCap className="h-4 w-4 animate-float" />
             Your IT Learning Companion
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          <h1 className="animate-fade-up delay-100 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             Everything You Need
             <br />
             to{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Learn IT.
+            <span key={wordIndex} className="word-in pb-1">
+              <span className="gradient-text-animated">
+                {rotatingWords[wordIndex]}
+              </span>
             </span>
           </h1>
 
           {/* Description */}
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+          <p className="animate-fade-up delay-200 mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
             Notes, videos, references and practice resources — organized in
             one place to help you learn, practice and progress.
           </p>
 
           {/* Search */}
-          <div className="mx-auto mt-7 max-w-2xl">
-            <div className="flex items-center rounded-2xl border border-slate-200 bg-white p-2 shadow-lg shadow-blue-100/40 transition-all focus-within:border-blue-300 focus-within:ring-4 focus-within:ring-blue-100/60">
+          <div className="animate-fade-up delay-300 mx-auto mt-7 max-w-2xl">
+            <div className="flex items-center rounded-2xl border border-slate-200 bg-white p-2 shadow-lg shadow-blue-100/40 transition-all focus-within:border-blue-300 focus-within:ring-4 focus-within:ring-blue-100/60 focus-within:-translate-y-0.5 duration-300">
               <Search className="ml-3 h-5 w-5 shrink-0 text-slate-400" />
 
               <input
@@ -66,7 +79,7 @@ export default function HeroSection() {
 
               <button
                 type="button"
-                className="hidden shrink-0 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-700 sm:block"
+                className="btn-shine hidden shrink-0 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-700 sm:block"
               >
                 Search
               </button>
@@ -74,7 +87,7 @@ export default function HeroSection() {
           </div>
 
           {/* Quick Search */}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
+          <div className="animate-fade-up delay-400 mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
             <span className="mr-1 font-medium text-slate-400">
               Popular:
             </span>
@@ -90,7 +103,7 @@ export default function HeroSection() {
                 key={item}
                 type="button"
                 onClick={() => setSearchQuery(item)}
-                className="rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 font-medium text-slate-500 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
+                className="rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 font-medium text-slate-500 transition-all hover:border-blue-200 hover:-translate-y-0.5 hover:bg-blue-50 hover:text-blue-600 hover:shadow-sm duration-300"
               >
                 {item}
               </button>
@@ -99,7 +112,7 @@ export default function HeroSection() {
         </div>
 
         {/* Hero Visual */}
-        <div className="relative mt-8 flex min-h-[460px] items-center justify-center">
+        <div className="animate-fade-up delay-500 relative mt-8 flex min-h-[540px] items-center justify-center">
           {/* Dashed Arrow - Left */}
           <svg
             className="pointer-events-none absolute left-[15%] top-[32%] hidden h-24 w-28 text-blue-300 lg:block"
@@ -139,7 +152,7 @@ export default function HeroSection() {
           </svg>
 
           {/* Structured Notes Card */}
-          <div className="absolute left-0 top-8 hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-blue-100/40 transition-transform duration-300 hover:-translate-y-1 lg:block">
+          <div className="absolute left-0 top-8 hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-blue-100/40 transition-transform duration-500 hover:scale-[1.04] hover:shadow-2xl animate-float lg:block">
             <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
               <BookOpen className="h-5 w-5" />
             </div>
@@ -160,7 +173,7 @@ export default function HeroSection() {
           </div>
 
           {/* References Card */}
-          <div className="absolute right-0 top-8 hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-indigo-100/40 transition-transform duration-300 hover:-translate-y-1 lg:block">
+          <div className="absolute right-0 top-8 hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-indigo-100/40 transition-transform duration-500 hover:scale-[1.04] hover:shadow-2xl animate-float-slow lg:block">
             <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
               <LinkIcon className="h-5 w-5" />
             </div>
@@ -180,7 +193,7 @@ export default function HeroSection() {
           </div>
 
           {/* Learning Videos Card */}
-          <div className="absolute bottom-6 left-[8%] hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-purple-100/40 transition-transform duration-300 hover:-translate-y-1 lg:block">
+          <div className="absolute bottom-6 left-[8%] hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-purple-100/40 transition-transform duration-500 hover:scale-[1.04] hover:shadow-2xl animate-float-delay lg:block">
             <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
               <Play className="h-5 w-5 fill-current" />
             </div>
@@ -201,7 +214,7 @@ export default function HeroSection() {
           </div>
 
           {/* Practice Card */}
-          <div className="absolute bottom-6 right-[8%] hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-emerald-100/40 transition-transform duration-300 hover:-translate-y-1 lg:block">
+          <div className="absolute bottom-6 right-[8%] hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-emerald-100/40 transition-transform duration-500 hover:scale-[1.04] hover:shadow-2xl animate-float lg:block">
             <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
               <Lightbulb className="h-5 w-5" />
             </div>
@@ -222,19 +235,19 @@ export default function HeroSection() {
           </div>
 
           {/* Floating Icons */}
-          <div className="absolute left-[28%] top-[18%] hidden h-12 w-12 rotate-[-10deg] items-center justify-center rounded-2xl border border-blue-100 bg-white text-blue-500 shadow-lg shadow-blue-100/50 lg:flex">
+          <div className="absolute left-[28%] top-[18%] hidden h-12 w-12 rotate-[-10deg] items-center justify-center rounded-2xl border border-blue-100 bg-white text-blue-500 shadow-lg shadow-blue-100/50 lg:flex animate-float-slow">
             <Code2 className="h-5 w-5" />
           </div>
 
-          <div className="absolute right-[28%] top-[18%] hidden h-12 w-12 rotate-[10deg] items-center justify-center rounded-2xl border border-indigo-100 bg-white text-indigo-500 shadow-lg shadow-indigo-100/50 lg:flex">
+          <div className="absolute right-[28%] top-[18%] hidden h-12 w-12 rotate-[10deg] items-center justify-center rounded-2xl border border-indigo-100 bg-white text-indigo-500 shadow-lg shadow-indigo-100/50 lg:flex animate-float-delay">
             <Database className="h-5 w-5" />
           </div>
 
-          <div className="absolute bottom-[22%] left-[28%] hidden h-12 w-12 rotate-[8deg] items-center justify-center rounded-2xl border border-purple-100 bg-white text-purple-500 shadow-lg shadow-purple-100/50 lg:flex">
+          <div className="absolute bottom-[22%] left-[28%] hidden h-12 w-12 rotate-[8deg] items-center justify-center rounded-2xl border border-purple-100 bg-white text-purple-500 shadow-lg shadow-purple-100/50 lg:flex animate-float">
             <Box className="h-5 w-5" />
           </div>
 
-          <div className="absolute bottom-[22%] right-[28%] hidden h-12 w-12 rotate-[-8deg] items-center justify-center rounded-2xl border border-sky-100 bg-white text-sky-500 shadow-lg shadow-sky-100/50 lg:flex">
+          <div className="absolute bottom-[22%] right-[28%] hidden h-12 w-12 rotate-[-8deg] items-center justify-center rounded-2xl border border-sky-100 bg-white text-sky-500 shadow-lg shadow-sky-100/50 lg:flex animate-float">
             <Layers className="h-5 w-5" />
           </div>
 
@@ -244,7 +257,7 @@ export default function HeroSection() {
             <div className="absolute bottom-0 h-[360px] w-[360px] rounded-full bg-gradient-to-tr from-blue-100 via-indigo-100 to-purple-100 blur-2xl" />
 
             {/* Decorative Circle */}
-            <div className="absolute bottom-0 h-[380px] w-[380px] rounded-full border border-blue-200/60" />
+            <div className="absolute bottom-0 h-[380px] w-[380px] rounded-full border border-dashed border-blue-300/60 animate-spin-slow" />
 
             {/* White Arch */}
             <div className="absolute bottom-0 h-[340px] w-[300px] rounded-t-[160px] bg-white/80 shadow-xl shadow-blue-100/30" />
@@ -256,7 +269,7 @@ export default function HeroSection() {
             />
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

@@ -1,3 +1,8 @@
+"use client";
+
+import Link from "next/link";
+import Carousel from "@/components/ui/Carousel";
+
 const learningPaths = [
   {
     title: "Programming Languages",
@@ -5,8 +10,8 @@ const learningPaths = [
     label: "01",
     icon: "</>",
     iconStyle: "bg-blue-50 text-blue-600",
-    image:
-      "https://placehold.co/800x450/e0f2fe/2563eb?text=Programming+Languages",
+    image: "/images/subjects/programming.jpg",
+    href: "/subjects/programming-languages",
   },
   {
     title: "Web Development",
@@ -14,8 +19,8 @@ const learningPaths = [
     label: "02",
     icon: "WEB",
     iconStyle: "bg-indigo-50 text-indigo-600",
-    image:
-      "https://placehold.co/800x450/e0e7ff/4f46e5?text=Web+Development",
+    image: "/images/subjects/web-development.jpg",
+    href: "/subjects/web-development",
   },
   {
     title: "Data Structures & Algorithms",
@@ -24,8 +29,8 @@ const learningPaths = [
     label: "03",
     icon: "DSA",
     iconStyle: "bg-purple-50 text-purple-600",
-    image:
-      "https://placehold.co/800x450/f3e8ff/9333ea?text=Data+Structures+%26+Algorithms",
+    image: "/images/subjects/dsa.jpg",
+    href: "/subjects/data-structures-algorithms",
   },
   {
     title: "Database & SQL",
@@ -33,8 +38,8 @@ const learningPaths = [
     label: "04",
     icon: "DB",
     iconStyle: "bg-violet-50 text-violet-600",
-    image:
-      "https://placehold.co/800x450/ede9fe/7c3aed?text=Database+%26+SQL",
+    image: "/images/subjects/database.jpg",
+    href: "/subjects/database-sql",
   },
   {
     title: "Cloud & DevOps",
@@ -42,8 +47,8 @@ const learningPaths = [
     label: "05",
     icon: "☁",
     iconStyle: "bg-sky-50 text-sky-600",
-    image:
-      "https://placehold.co/800x450/e0f2fe/0284c7?text=Cloud+%26+DevOps",
+    image: "/images/subjects/cloud.jpg",
+    href: "/subjects/cloud-devops",
   },
   {
     title: "AI & Machine Learning",
@@ -51,8 +56,8 @@ const learningPaths = [
     label: "06",
     icon: "AI",
     iconStyle: "bg-fuchsia-50 text-fuchsia-600",
-    image:
-      "https://placehold.co/800x450/fae8ff/c026d3?text=AI+%26+Machine+Learning",
+    image: "/images/subjects/ai.jpg",
+    href: "/subjects/ai-machine-learning",
   },
 ];
 
@@ -76,20 +81,26 @@ export default function ExploreLearning() {
           </p>
         </div>
 
-        {/* Learning Cards */}
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {learningPaths.map((path) => (
-            <div
-              key={path.title}
-              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+        {/* Learning Cards Carousel */}
+        <Carousel
+          className="mt-10"
+          items={learningPaths}
+          ariaLabel="IT learning paths"
+          perView={{ base: 1, md: 2, lg: 3 }}
+          renderItem={(path) => (
+            <Link
+              href={path.href}
+              className="group relative block h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/60"
             >
               {/* Image */}
-              <div className="relative h-32 w-full overflow-hidden bg-slate-100">
+              <div className="relative h-44 w-full overflow-hidden bg-slate-100">
                 <img
                   src={path.image}
                   alt={path.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
 
                 {/* Number */}
                 <div className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-slate-500 shadow-sm backdrop-blur-sm">
@@ -99,26 +110,22 @@ export default function ExploreLearning() {
 
               {/* Card Content */}
               <div className="p-5">
-                {/* Title + Icon */}
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="min-w-0 text-lg font-bold leading-6 text-slate-900 transition-colors duration-300 group-hover:text-blue-600">
                     {path.title}
                   </h3>
 
-                  {/* Icon */}
                   <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-extrabold transition-all duration-300 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white ${path.iconStyle}`}
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-extrabold transition-all duration-500 group-hover:rotate-[-8deg] group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white ${path.iconStyle}`}
                   >
                     {path.icon}
                   </div>
                 </div>
 
-                {/* Short Description */}
                 <p className="mt-2 text-sm leading-5 text-slate-600">
                   {path.description}
                 </p>
 
-                {/* Bottom */}
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                     Learning Path
@@ -130,11 +137,10 @@ export default function ExploreLearning() {
                 </div>
               </div>
 
-              {/* Bottom Gradient Line */}
-              <div className="absolute bottom-0 left-0 h-1 w-0 gradient-bg transition-all duration-300 group-hover:w-full" />
-            </div>
-          ))}
-        </div>
+              <div className="absolute bottom-0 left-0 h-1 w-0 gradient-bg transition-all duration-500 group-hover:w-full" />
+            </Link>
+          )}
+        />
       </div>
     </section>
   );

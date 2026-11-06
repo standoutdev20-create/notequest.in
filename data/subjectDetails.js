@@ -3,7 +3,7 @@ export const subjectDetails = {
     slug: "programming-languages",
     title: "Programming Languages",
 
-    heroImage: "/images/subjects/programming.png",
+    heroImage: "/images/subjects/programming.jpg",
 
     tagline: "Build a strong foundation in programming",
 
@@ -23,21 +23,21 @@ export const subjectDetails = {
         type: "Notes",
         description:
           "Learn variables, data types, operators, conditions and loops.",
-        image: "/images/subjects/programming.png",
+        image: "/images/subjects/programming.jpg",
       },
       {
         title: "Object-Oriented Programming",
         type: "Video",
         description:
           "Understand classes, objects, inheritance and polymorphism.",
-        image: "/images/subjects/programming.png",
+        image: "/images/subjects/programming.jpg",
       },
       {
         title: "Programming Practice",
         type: "Practice",
         description:
           "Solve beginner-friendly programming problems and improve your logic.",
-        image: "/images/subjects/programming.png",
+        image: "/images/subjects/programming.jpg",
       },
     ],
 
@@ -46,25 +46,25 @@ export const subjectDetails = {
         title: "Programming Fundamentals",
         description:
           "Understand the basic concepts required to start programming.",
-        image: "/images/subjects/programming.png",
+        image: "/images/subjects/programming.jpg",
       },
       {
         title: "Variables & Data Types",
         description:
           "Learn how data is stored and handled inside programs.",
-        image: "/images/subjects/programming.png",
+        image: "/images/subjects/programming.jpg",
       },
       {
         title: "Conditions & Loops",
         description:
           "Learn how programs make decisions and repeat tasks.",
-        image: "/images/subjects/programming.png",
+        image: "/images/subjects/programming.jpg",
       },
       {
         title: "Functions",
         description:
           "Create reusable blocks of code using functions and methods.",
-        image: "/images/subjects/programming.png",
+        image: "/images/subjects/programming.jpg",
       },
     ],
 
@@ -99,7 +99,7 @@ export const subjectDetails = {
     slug: "web-development",
     title: "Web Development",
 
-    heroImage: "/images/subjects/web-development.png",
+    heroImage: "/images/subjects/web-development.jpg",
 
     tagline: "Learn how modern websites are built",
 
@@ -119,21 +119,21 @@ export const subjectDetails = {
         type: "Notes",
         description:
           "Learn the building blocks of modern websites.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
       {
         title: "JavaScript",
         type: "Video",
         description:
           "Understand JavaScript fundamentals and browser interactions.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
       {
         title: "React.js",
         type: "Practice",
         description:
           "Build modern interactive interfaces using React.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
     ],
 
@@ -142,31 +142,31 @@ export const subjectDetails = {
         title: "HTML",
         description:
           "Learn how web pages are structured using HTML.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
       {
         title: "CSS",
         description:
           "Create beautiful and responsive web interfaces.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
       {
         title: "JavaScript",
         description:
           "Add logic and interactivity to web applications.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
       {
         title: "React.js",
         description:
           "Build reusable and interactive UI components.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
       {
         title: "Next.js",
         description:
           "Build modern full-stack React applications.",
-        image: "/images/subjects/web-development.png",
+        image: "/images/subjects/web-development.jpg",
       },
     ],
 
