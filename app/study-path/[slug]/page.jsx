@@ -12,6 +12,10 @@ import {
 } from "lucide-react";
 
 import { studyPaths } from "../../../data/studyPaths";
+import PathProgress from "@/components/study-path/PathProgress";
+import { getCurrentUser } from "@/lib/api";
+import { pathLessons } from "@/data/pathLessons";
+import { getCompleted, getSubject } from "@/lib/learning";
 
 export function generateStaticParams() {
   return Object.keys(studyPaths).map((slug) => ({
@@ -22,6 +26,20 @@ export function generateStaticParams() {
 export default async function StudyPathDetailPage({ params }) {
   const { slug } = await params;
   const path = studyPaths[slug];
+  const user = await getCurrentUser();
+  const refs = pathLessons[slug] || [];
+  const subjectSlugs = [...new Set(refs.flat().map((r) => r.split("/")[0]))];
+  const [subjectData, completed] = await Promise.all([
+    Promise.all(subjectSlugs.map((s) => getSubject(s).catch(() => null))),
+    getCompleted(user),
+  ]);
+  const lessonInfo = {};
+  for (const d of subjectData.filter(Boolean)) {
+    for (const l of d.lessons) lessonInfo[`${d.subject.slug}/${l.slug}`] = { title: l.title, duration: l.duration, subject: d.subject.title };
+  }
+  const stepLessons = refs.map((step) =>
+    step.filter((r) => lessonInfo[r]).map((r) => ({ ref: r, ...lessonInfo[r], done: completed.includes(r) }))
+  );
 
   if (!path) {
     return (
@@ -164,47 +182,7 @@ export default async function StudyPathDetailPage({ params }) {
               </p>
             </div>
 
-            <div className="space-y-5">
-              {path.roadmap.map((item, index) => (
-                <div
-                  key={item.step}
-                  className="group relative rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/30"
-                >
-                  <div className="flex gap-5">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 text-sm font-extrabold text-indigo-600">
-                      {item.step}
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-                        <h3 className="text-lg font-extrabold text-slate-900">
-                          {item.title}
-                        </h3>
-
-                        <span className="w-fit rounded-full bg-slate-50 px-3 py-1 text-[10px] font-bold text-slate-400">
-                          Step {index + 1}
-                        </span>
-                      </div>
-
-                      <p className="mt-2 text-sm leading-6 text-slate-500">
-                        {item.description}
-                      </p>
-
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {item.topics.map((topic) => (
-                          <span
-                            key={topic}
-                            className="rounded-lg border border-slate-100 bg-slate-50 px-2.5 py-1.5 text-[11px] font-semibold text-slate-600"
-                          >
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <PathProgress slug={slug} roadmap={path.roadmap} signedIn={Boolean(user)} stepLessons={stepLessons} />
           </div>
 
           {/* Sidebar */}
@@ -313,8 +291,7 @@ export default async function StudyPathDetailPage({ params }) {
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-blue-100">
-            Explore more learning paths, resources and practice opportunities
-            on NoteQuest.
+            Explore more learning paths, articles and resources on NoteQuest.
           </p>
 
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
@@ -327,10 +304,10 @@ export default async function StudyPathDetailPage({ params }) {
             </Link>
 
             <Link
-              href="/practice"
+              href="/notes/new"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20"
             >
-              Practice Problems
+              Write Notes
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

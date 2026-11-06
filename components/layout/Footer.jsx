@@ -7,7 +7,7 @@ const columns = [
     links: [
       { name: "Subjects", href: "/subjects" },
       { name: "Study Paths", href: "/study-path" },
-      { name: "Practice", href: "/practice" },
+      { name: "My Notes", href: "/notes" },
       { name: "Resources", href: "/resources" },
     ],
   },
@@ -48,7 +48,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-7">
-              Structured notes, videos, references and practice for IT students
+              Hands-on lessons, sticky notes and study paths for IT students
               and developers — all organized in one place.
             </p>
 

@@ -15,11 +15,11 @@ const slides = [
   },
   {
     image: "/images/gallery/workspace.jpg",
-    tag: "Practice",
-    title: "Learn by solving real problems",
-    text: "Sharpen your logic with hands-on problems across programming, DSA and databases.",
-    href: "/practice",
-    cta: "Start practicing",
+    tag: "Notes",
+    title: "Write notes as you learn",
+    text: "Capture ideas while reading articles, then download them to your computer.",
+    href: "/notes",
+    cta: "Open my notes",
   },
   {
     image: "/images/gallery/students.jpg",

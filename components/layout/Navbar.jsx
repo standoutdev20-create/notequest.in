@@ -1,24 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, LayoutDashboard, NotebookPen, ShieldCheck, LogOut, ChevronDown, Settings2 } from "lucide-react";
+import { api } from "@/lib/client";
+
+const CRM_URL = process.env.NEXT_PUBLIC_CRM_URL || "http://localhost:3001";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Subjects", href: "/subjects" },
   { name: "Resources", href: "/resources" },
   { name: "Study Path", href: "/study-path" },
-  { name: "Practice", href: "/practice" },
+  { name: "My Notes", href: "/notes" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
 ];
 
-export default function Navbar() {
+/** @param {{ user?: { name: string, email: string, role: string } | null }} props */
+export default function Navbar({ user = null }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function logout() {
+    try {
+      await api("/auth/logout", { method: "POST" });
+    } finally {
+      setOpen(false);
+      router.push("/");
+      router.refresh();
+    }
+  }
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -34,6 +50,11 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Signed-in learners: "Home" is their dashboard; About is for visitors.
+  const links = user
+    ? navLinks.filter((l) => l.href !== "/about").map((l) => (l.href === "/" ? { ...l, name: "Dashboard" } : l))
+    : navLinks.filter((l) => l.href !== "/notes");
 
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
@@ -63,7 +84,7 @@ export default function Navbar() {
 
         {/* Desktop navigation */}
         <nav className="hidden items-center gap-1 rounded-full border border-slate-200/70 bg-white/70 p-1 shadow-sm lg:flex">
-          {navLinks.map((link) => {
+          {links.map((link) => {
             const active = isActive(link.href);
             return (
               <Link
@@ -83,13 +104,63 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <Link
-            href="/study-path"
-            className="gradient-bg btn-shine group hidden items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-300 sm:inline-flex lg:hidden xl:inline-flex"
-          >
-            Get Started
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          {user ? (
+            <div className="relative hidden sm:block">
+              <button
+                type="button"
+                onClick={() => setMenuOpen((v) => !v)}
+                aria-expanded={menuOpen}
+                className="flex items-center gap-2 rounded-full border border-slate-200 bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-200"
+              >
+                <span className="gradient-bg flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white">
+                  {user.name.slice(0, 1).toUpperCase()}
+                </span>
+                <span className="max-w-[8rem] truncate">{user.name.split(" ")[0]}</span>
+                <ChevronDown className="h-4 w-4 text-slate-400" />
+              </button>
+
+              {menuOpen && (
+                <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-xl">
+                  <p className="truncate px-3 py-2 text-xs text-slate-400">{user.email}</p>
+                  <Link onClick={() => setMenuOpen(false)} href="/" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                    <LayoutDashboard className="h-4 w-4" /> Dashboard
+                  </Link>
+                  <Link onClick={() => setMenuOpen(false)} href="/notes" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                    <NotebookPen className="h-4 w-4" /> My Notes
+                  </Link>
+                  <Link onClick={() => setMenuOpen(false)} href="/welcome" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                    <Settings2 className="h-4 w-4" /> Interests &amp; goal
+                  </Link>
+                  {user.role === "admin" && (
+                    <a onClick={() => setMenuOpen(false)} href={CRM_URL} className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-50">
+                      <ShieldCheck className="h-4 w-4" /> Admin CRM
+                    </a>
+                  )}
+                  <div>
+                    <button type="button" onClick={logout} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50">
+                      <LogOut className="h-4 w-4" /> Log out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="hidden rounded-full px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:text-blue-600 sm:inline-flex"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/signup"
+                className="gradient-bg btn-shine group hidden items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-300 sm:inline-flex"
+              >
+                Sign up
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </>
+          )}
 
           <button
             type="button"
@@ -110,7 +181,7 @@ export default function Navbar() {
         }`}
       >
         <nav className="section-container flex flex-col gap-1 py-4">
-          {navLinks.map((link, i) => (
+          {links.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
@@ -128,13 +199,34 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Link
-            href="/study-path"
-            onClick={() => setOpen(false)}
-            className="gradient-bg mt-3 inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-md"
-          >
-            Get Started <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="mt-3 border-t border-slate-100 pt-3">
+            {user ? (
+              <div className="flex flex-col gap-1">
+                <Link href="/" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-base font-semibold text-slate-700 hover:bg-slate-50">
+                  Dashboard
+                </Link>
+                {user.role === "admin" && (
+                  <a href={CRM_URL} className="rounded-xl px-4 py-3 text-base font-semibold text-indigo-700 hover:bg-indigo-50">
+                    Admin CRM
+                  </a>
+                )}
+                <div>
+                  <button type="button" onClick={logout} className="w-full rounded-xl px-4 py-3 text-left text-base font-semibold text-red-600 hover:bg-red-50">
+                    Log out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2">
+                <Link href="/login" onClick={() => setOpen(false)} className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700">
+                  Log in
+                </Link>
+                <Link href="/signup" onClick={() => setOpen(false)} className="gradient-bg inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-md">
+                  Sign up <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
       </div>
     </header>

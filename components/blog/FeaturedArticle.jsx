@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Clock3, CalendarDays, Sparkles } from "lucide-react";
-import blogPosts from "../../data/blogPosts";
 
-export default function FeaturedArticle() {
-  const article = blogPosts.find((post) => post.featured);
+export default function FeaturedArticle({ posts = [] }) {
+  const article = posts.find((post) => post.featured) || posts[0];
 
   if (!article) return null;
 

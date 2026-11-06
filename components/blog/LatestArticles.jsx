@@ -5,9 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-import blogPosts from "../../data/blogPosts";
 
-export default function LatestArticles() {
+export default function LatestArticles({ posts: blogPosts = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const totalCards = blogPosts.length;

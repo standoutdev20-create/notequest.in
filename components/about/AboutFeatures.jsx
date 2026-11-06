@@ -26,10 +26,10 @@ image: "/images/about/feature-subjects.jpg",
 icon: GraduationCap,
 },
 {
-title: "Coding Practice",
+title: "Personal Notes",
 description:
-"Improve your problem-solving skills with programming challenges.",
-href: "/practice",
+"Write notes while you learn and download them to your computer.",
+href: "/notes",
 image: "/images/about/feature-practice.jpg",
 icon: Code2,
 },

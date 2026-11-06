@@ -56,7 +56,7 @@ export default function ResourcesCTA() {
             </h2>
 
             <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-              Explore more resources, practice real problems, and follow
+              Explore more resources, take your own notes, and follow
               structured learning paths to keep growing every day.
             </p>
 
@@ -71,10 +71,10 @@ export default function ResourcesCTA() {
               </Link>
 
               <Link
-                href="/practice"
+                href="/notes"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
               >
-                Practice Problems
+                Write Notes
               </Link>
             </div>
           </div>

@@ -31,9 +31,9 @@ const steps = [
   },
   {
     number: "03",
-    title: "Practice & Build",
+    title: "Track & Build",
     description:
-      "Strengthen your understanding with coding problems, exercises and practical projects.",
+      "Mark steps complete as you go, take notes, and build practical projects.",
     icon: Code2,
     iconBg: "bg-emerald-50",
     iconColor: "text-emerald-600",

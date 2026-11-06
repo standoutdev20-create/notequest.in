@@ -17,16 +17,16 @@ import {
 const faqs = [
   {
     id: 1,
-    question: 'Do I need prior experience to start learning on NetQuest?',
+    question: 'Do I need prior experience to start learning on NoteQuest?',
     answer:
-      'No. NetQuest is designed for learners at different skill levels. Explore foundational concepts, structured learning resources, and practice material at your own pace without prerequisite barriers.',
+      'No. NoteQuest is designed for learners at different skill levels. Explore foundational concepts, structured learning resources, and study paths at your own pace without prerequisite barriers.',
     icon: GraduationCapIcon,
   },
   {
     id: 2,
-    question: 'What kind of learning resources does NetQuest provide?',
+    question: 'What kind of learning resources does NoteQuest provide?',
     answer:
-      'NetQuest provides curated notes, video tutorials, reference docs, interactive code snippets, and practice problems organized by topics.',
+      'NoteQuest provides tech articles, curated references, step-by-step study paths, and a personal notebook where you can write and download your own notes.',
     icon: BookOpen,
   },
   {
@@ -45,16 +45,16 @@ const faqs = [
   },
   {
     id: 5,
-    question: 'Can I practice what I learn on NetQuest?',
+    question: 'Can I save my own notes on NoteQuest?',
     answer:
-      'Yes, we offer practice exercises and interactive components to reinforce your conceptual understanding.',
+      'Yes. Create a free account to write notes (even while reading an article), keep them in your account, and download them as Markdown or text files.',
     icon: Code,
   },
   {
     id: 6,
-    question: 'Can I access NetQuest on mobile devices?',
+    question: 'Can I access NoteQuest on mobile devices?',
     answer:
-      'Yes, NetQuest is fully responsive and optimized for mobile, tablet, and desktop browsing.',
+      'Yes, NoteQuest is fully responsive and optimized for mobile, tablet, and desktop browsing.',
     icon: Smartphone,
   },
 ];
@@ -129,7 +129,7 @@ export default function FaqSection() {
 
           {/* Subtitle */}
           <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed">
-            Find answers to common questions about NetQuest, learning resources, and your engineering journey.
+            Find answers to common questions about NoteQuest, learning resources, and your engineering journey.
           </p>
 
           {/* Dot Indicator */}

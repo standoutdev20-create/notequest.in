@@ -8,31 +8,34 @@ import {
   Clock3,
   Sparkles,
   BookOpen,
+  NotebookPen,
 } from "lucide-react";
 
-import blogPosts from "../../../data/blogPosts";
+import { getPost, getPosts } from "@/lib/blog";
+import ArticleViewTracker from "@/components/analytics/ArticleViewTracker";
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const article = await getPost(slug);
+  return article ? { title: `${article.title} | NoteQuest`, description: article.excerpt } : {};
 }
 
 export default async function BlogArticlePage({ params }) {
   const { slug } = await params;
 
-  const article = blogPosts.find((post) => post.slug === slug);
+  const article = await getPost(slug);
 
   if (!article) {
     notFound();
   }
 
-  const relatedArticles = blogPosts
+  const relatedArticles = (await getPosts())
     .filter((post) => post.slug !== article.slug)
     .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-white">
+      <ArticleViewTracker slug={article.slug} title={article.title} />
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden bg-slate-950">
         {/* Background gradients */}
@@ -162,7 +165,7 @@ export default async function BlogArticlePage({ params }) {
                         <div className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
                         <div className="h-2.5 w-2.5 rounded-full bg-green-400" />
                         <span className="ml-2 text-xs text-slate-500">
-                          JavaScript
+                          {section.language || "Code"}
                         </span>
                       </div>
 
@@ -205,7 +208,20 @@ export default async function BlogArticlePage({ params }) {
             </article>
 
             {/* Sidebar */}
-            <aside className="lg:sticky lg:top-24 lg:self-start">
+            <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
+              <Link
+                href={`/notes/new?article=${encodeURIComponent(article.slug)}&title=${encodeURIComponent(article.title)}`}
+                className="group flex items-center gap-3 rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 p-5 text-white shadow-lg shadow-blue-200/50 transition hover:-translate-y-0.5"
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/15">
+                  <NotebookPen className="h-5 w-5" />
+                </span>
+                <span>
+                  <span className="block font-bold">Take notes</span>
+                  <span className="block text-xs text-blue-100">Write while you read, then download them</span>
+                </span>
+              </Link>
+
               <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">
                   Article Info

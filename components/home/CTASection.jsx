@@ -40,7 +40,7 @@ export default function CTASection() {
 
               <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
                 Build strong IT fundamentals, follow structured learning
-                paths, practice real problems, and grow your skills one step
+                paths, take your own notes, and grow your skills one step
                 at a time.
               </p>
 

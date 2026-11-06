@@ -7,7 +7,6 @@ import {
   Smartphone,
   Cpu,
   Network,
-  ArrowUpRight,
 } from "lucide-react";
 
 import SubjectCard from "./SubjectCard";
@@ -24,7 +23,7 @@ const icons = {
   "computer-networks": Network,
 };
 
-export default function SubjectCategories() {
+export default function SubjectCategories({ stats = {}, progress = {} }) {
   return (
     <section
       id="subjects"
@@ -63,7 +62,9 @@ export default function SubjectCategories() {
                 title={subject.title}
                 description={subject.description}
                 icon={Icon}
-                topics={subject.topics}
+                topics={stats[subject.slug]?.lessons ?? subject.topics}
+                minutes={stats[subject.slug]?.minutes}
+                progress={progress[subject.slug]}
                 color={subject.color}
                 href={`/subjects/${subject.slug}`}
               />

@@ -22,9 +22,9 @@ description:
 },
 {
 icon: Code2,
-title: "Learn by Practicing",
+title: "Learn by Writing",
 description:
-"Strengthen your knowledge by applying it to coding problems.",
+"Strengthen your knowledge by writing your own notes as you go.",
 },
 {
 icon: Compass,

@@ -23,9 +23,9 @@ const features = [
     image: "/images/features/references.jpg",
   },
   {
-    title: "Practice",
+    title: "Personal Notes",
     description:
-      "Strengthen your knowledge through questions, coding and practical exercises.",
+      "Write notes while you learn, keep them in your account and download them anytime.",
     image: "/images/features/practice.jpg",
   },
   {

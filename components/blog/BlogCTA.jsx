@@ -82,11 +82,11 @@ export default function BlogCTA() {
                 </Link>
 
                 <Link
-                  href="/practice"
+                  href="/notes"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
                 >
                   <Play className="h-4 w-4" />
-                  Practice Problems
+                  Write Notes
                 </Link>
               </div>
             </div>

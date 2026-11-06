@@ -15,7 +15,7 @@ import {
   Layers,
 } from "lucide-react";
 
-const rotatingWords = ["Learn IT.", "Build Skills.", "Practice Daily.", "Grow Faster."];
+const rotatingWords = ["Learn IT.", "Build Skills.", "Take Notes.", "Grow Faster."];
 
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,8 +60,8 @@ export default function HeroSection() {
 
           {/* Description */}
           <p className="animate-fade-up delay-200 mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
-            Notes, videos, references and practice resources — organized in
-            one place to help you learn, practice and progress.
+            Articles, notes, references and study paths — organized in
+            one place to help you learn, take notes and progress.
           </p>
 
           {/* Search */}
@@ -213,23 +213,23 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Practice Card */}
+          {/* Notes Card */}
           <div className="absolute bottom-6 right-[8%] hidden w-56 rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-emerald-100/40 transition-transform duration-500 hover:scale-[1.04] hover:shadow-2xl animate-float lg:block">
             <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
               <Lightbulb className="h-5 w-5" />
             </div>
 
             <h3 className="text-sm font-bold text-slate-900">
-              Practice
+              My Notes
             </h3>
 
             <p className="mt-2 text-xs leading-5 text-slate-500">
-              Strengthen your skills with programming and IT practice
-              problems.
+              Write notes while you learn and download them to your
+              computer.
             </p>
 
             <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-emerald-600">
-              Practice
+              Take notes
               <ArrowRight className="h-3.5 w-3.5" />
             </div>
           </div>

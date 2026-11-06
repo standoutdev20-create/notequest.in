@@ -43,14 +43,14 @@ const categories = [
     href: "/resources?type=references",
   },
   {
-    title: "Practice",
+    title: "Notes",
     description:
-      "Practice problems and coding challenges to improve your programming skills.",
+      "Write and organise your own notes, then download them to your computer.",
     icon: Code2,
     iconBg: "bg-rose-50",
     iconColor: "text-rose-600",
-    count: "50+ Problems",
-    href: "/practice",
+    count: "Unlimited",
+    href: "/notes",
   },
 ];
 

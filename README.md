@@ -1,37 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# notequest.in
 
-## Getting Started
+Public NoteQuest website (Next.js 16): articles, personal notes with download, and study paths with progress tracking.
 
-First, run the development server:
+Data comes from the Express API in `../notequest-backend`. `/api/*` and `/uploads/*` are proxied there
+(see `next.config.ts`), so the login cookie is first-party.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local   # API_URL, NEXT_PUBLIC_CRM_URL
+npm install
+npm run dev                  # http://localhost:3000  (start the API first)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `/`: marketing page for visitors; **personal dashboard** for signed-in learners (streak, daily goal,
+  continue learning, balanced recommendations across interests, activity heatmap, sticky notes, paths)
+- `/signup` → `/welcome`: pick interests and a daily goal (editable later)
+- `/subjects/[slug]`: course page with modules, lessons and progress
+- `/subjects/[slug]/[lesson]`: lesson reader with outline, reading progress, mark complete, and a
+  **sticky notes** panel (highlight any text → "Add to note"; notes autosave and download as Markdown)
+- `/notes`: sticky-note board (filter by lessons / articles / personal, colour, search, download)
+- `/study-path/[slug]`: path steps linked to the lessons that teach them (`data/pathLessons.js`)
+- `/blog/[slug]`: articles from the API, with a "Take notes" shortcut
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# notequest.in
+If the API is down, the blog falls back to the bundled starter posts in `data/blogPosts.js`.

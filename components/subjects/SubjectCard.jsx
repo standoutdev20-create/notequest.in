@@ -6,6 +6,8 @@ export default function SubjectCard({
   description,
   icon: Icon,
   topics,
+  minutes,
+  progress,
   color = "blue",
   href = "#",
 }) {
@@ -66,13 +68,21 @@ export default function SubjectCard({
           <span
             className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${styles.badge}`}
           >
-            {topics} Topics
+            {topics} Lessons{minutes ? ` · ${Math.round(minutes / 60) || 1}h` : ""}
           </span>
+          {typeof progress === "number" && progress > 0 && (
+            <div className="mt-4">
+              <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
+                <div className="h-full rounded-full bg-emerald-500" style={{ width: `${progress}%` }} />
+              </div>
+              <p className="mt-1.5 text-xs font-semibold text-emerald-700">{progress}% complete</p>
+            </div>
+          )}
         </div>
 
         {/* Explore */}
         <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors group-hover:text-blue-600">
-          Explore Subject
+          {progress ? "Continue learning" : "Start learning"}
 
           <ArrowRight
             size={17}
